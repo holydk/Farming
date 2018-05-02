@@ -18,7 +18,7 @@ namespace Farming.WpfClient.ViewModels
             {
                 homeVm
             };
-
+            var t = "test";
             _navigationItems = new INavigationItem[]
             {
                 new NavigationItem(homeVm.Title, typeof(Home), PackIconKind.Home)
