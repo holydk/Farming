@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Farming.WpfClient.Themes"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <SolidColorBrush x:Key="InfoBoxBackground" Color="#FFEBEBEB" options:Freeze="True"/>
+    <SolidColorBrush x:Key="InfoBoxHeaderBackground" Color="#FF069BDF" options:Freeze="True"/>
+
+</ResourceDictionary>
