@@ -1,5 +1,7 @@
-﻿using Farming.WpfClient.ViewModels;
+﻿using Farming.WpfClient.Commands;
+using Farming.WpfClient.ViewModels;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Farming.WpfClient.Views
 {

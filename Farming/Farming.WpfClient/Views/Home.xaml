@@ -21,8 +21,9 @@
 
         <Border Grid.Row="1"
                 Background="White">
-            
+
         </Border>
         
     </Grid>
+    
 </UserControl>

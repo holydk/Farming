@@ -1,6 +1,8 @@
-﻿namespace Farming.WpfClient.ViewModels
+﻿using Farming.WpfClient.Models;
+
+namespace Farming.WpfClient.ViewModels
 {
-    public interface IPageViewModel
+    public interface IPageViewModel : IUpdatable
     {
         string Title { get; }
 

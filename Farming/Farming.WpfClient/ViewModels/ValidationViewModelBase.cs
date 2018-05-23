@@ -6,13 +6,13 @@ using System.ComponentModel;
 
 namespace Farming.WpfClient.ViewModels
 {
-    public interface IValidationOnClick : IDataErrorInfo
+    public interface IValidationViewModel : IDataErrorInfo
     {
         bool IsValidOnClick { get; set; }
-        bool ValidOnClick();
+        bool Valid();
     }
 
-    public class ValidationViewModelBase : ViewModelBase, IValidationOnClick, IDataErrorInfo
+    public class ValidationViewModelBase : ViewModelBase, IValidationViewModel, IDataErrorInfo
     {        
         private Dictionary<string, Binder> ruleMap = new Dictionary<string, Binder>();
 
@@ -73,7 +73,7 @@ namespace Farming.WpfClient.ViewModels
             }
         }
 
-        public bool ValidOnClick()
+        public bool Valid()
         {
             IsValidOnClick = false;
             IsValidForce();

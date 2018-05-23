@@ -2,7 +2,7 @@
 
 namespace Farming.WpfClient.Views
 {
-    public interface IView<T> where T : class, IPageViewModel
+    public interface IView<T> where T : class
     {
         T ViewModel { get; set; }
     }

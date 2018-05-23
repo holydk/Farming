@@ -1,0 +1,1002 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище FarmingModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="byki">
+          <Key>
+            <PropertyRef Name="id_byka" />
+          </Key>
+          <Property Name="id_byka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mesto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="identifikator" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gruppy_krovi">
+          <Key>
+            <PropertyRef Name="id_gruppy" />
+          </Key>
+          <Property Name="id_gruppy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gruppa_krovi" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kategorii">
+          <Key>
+            <PropertyRef Name="id_kategorii" />
+          </Key>
+          <Property Name="id_kategorii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriya" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="korovy">
+          <Key>
+            <PropertyRef Name="inv_nomer" />
+          </Key>
+          <Property Name="inv_nomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="klichka" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_porody" Type="int" />
+          <Property Name="porodnost" Type="float" Nullable="false" />
+          <Property Name="id_linii" Type="int" />
+          <Property Name="id_semejstva" Type="int" />
+          <Property Name="data_rozhdeniya" Type="datetime" Nullable="false" />
+          <Property Name="mesto_rozhdeniya" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zhivaya_massa" Type="float" Nullable="false" />
+          <Property Name="vozrast" Type="int" Nullable="false" />
+          <Property Name="id_kategorii" Type="int" />
+          <Property Name="id_gruppy" Type="int" />
+          <Property Name="inv_nomer_mat" Type="int" />
+          <Property Name="id_byka_otec" Type="int" />
+          <Property Name="v_stade" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="linii">
+          <Key>
+            <PropertyRef Name="id_linii" />
+          </Key>
+          <Property Name="id_linii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="liniya" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="logi">
+          <Key>
+            <PropertyRef Name="id_event" />
+          </Key>
+          <Property Name="id_event" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tab" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="event" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="metod_sluchki">
+          <Key>
+            <PropertyRef Name="id_metoda" />
+          </Key>
+          <Property Name="id_metoda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="metod" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pol">
+          <Key>
+            <PropertyRef Name="id_pola" />
+          </Key>
+          <Property Name="id_pola" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pol" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="porody">
+          <Key>
+            <PropertyRef Name="id_porody" />
+          </Key>
+          <Property Name="id_porody" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="poroda" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="priplod">
+          <Key>
+            <PropertyRef Name="id_priploda" />
+          </Key>
+          <Property Name="id_priploda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inv_nomer" Type="int" />
+          <Property Name="id_pola" Type="int" />
+          <Property Name="ves" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="produktivnost">
+          <Key>
+            <PropertyRef Name="id_zapisi" />
+          </Key>
+          <Property Name="id_zapisi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inv_nomer" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="uchteno_laktacij" Type="int" Nullable="false" />
+          <Property Name="udoj(kg)" Type="float" Nullable="false" />
+          <Property Name="zhir(proz)" Type="float" Nullable="false" />
+          <Property Name="belok(proz)" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semejstva">
+          <Key>
+            <PropertyRef Name="id_semejstva" />
+          </Key>
+          <Property Name="id_semejstva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="semejstvo" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="familiya" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="imya" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="otchestvo" Type="varchar" MaxLength="50" />
+          <Property Name="telefon" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vosproizvedenie">
+          <Key>
+            <PropertyRef Name="prosto_id" />
+          </Key>
+          <Property Name="prosto_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inv_nomer" Type="int" />
+          <Property Name="id_metoda" Type="int" />
+          <Property Name="data_osemeneniya" Type="datetime" Nullable="false" />
+          <Property Name="chislo_suhih_dney" Type="int" Nullable="false" />
+          <Property Name="id_byka" Type="int" />
+          <Property Name="sor_period" Type="int" Nullable="false" />
+          <Property Name="data_otela" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vybytie">
+          <Key>
+            <PropertyRef Name="id_vybytiya" />
+          </Key>
+          <Property Name="id_vybytiya" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inv_nomer" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="prichina" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_korovy_byki1">
+          <End Role="byki" Type="Self.byki" Multiplicity="0..1" />
+          <End Role="korovy" Type="Self.korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="byki">
+              <PropertyRef Name="id_byka" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="id_byka_otec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_gruppy_krovi">
+          <End Role="gruppy_krovi" Type="Self.gruppy_krovi" Multiplicity="0..1" />
+          <End Role="korovy" Type="Self.korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gruppy_krovi">
+              <PropertyRef Name="id_gruppy" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="id_gruppy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_kategorii">
+          <End Role="kategorii" Type="Self.kategorii" Multiplicity="0..1" />
+          <End Role="korovy" Type="Self.korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategorii">
+              <PropertyRef Name="id_kategorii" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="id_kategorii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_korovy">
+          <End Role="korovy" Type="Self.korovy" Multiplicity="0..1" />
+          <End Role="korovy1" Type="Self.korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="inv_nomer" />
+            </Principal>
+            <Dependent Role="korovy1">
+              <PropertyRef Name="inv_nomer_mat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_linii">
+          <End Role="linii" Type="Self.linii" Multiplicity="0..1" />
+          <End Role="korovy" Type="Self.korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linii">
+              <PropertyRef Name="id_linii" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="id_linii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_porody">
+          <End Role="porody" Type="Self.porody" Multiplicity="0..1" />
+          <End Role="korovy" Type="Self.korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="porody">
+              <PropertyRef Name="id_porody" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="id_porody" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_semejstva">
+          <End Role="semejstva" Type="Self.semejstva" Multiplicity="0..1" />
+          <End Role="korovy" Type="Self.korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semejstva">
+              <PropertyRef Name="id_semejstva" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="id_semejstva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priplod_korovy">
+          <End Role="korovy" Type="Self.korovy" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="priplod" Type="Self.priplod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="inv_nomer" />
+            </Principal>
+            <Dependent Role="priplod">
+              <PropertyRef Name="inv_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priplod_Pol">
+          <End Role="Pol" Type="Self.Pol" Multiplicity="0..1" />
+          <End Role="priplod" Type="Self.priplod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pol">
+              <PropertyRef Name="id_pola" />
+            </Principal>
+            <Dependent Role="priplod">
+              <PropertyRef Name="id_pola" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produktivnost_korovy">
+          <End Role="korovy" Type="Self.korovy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="produktivnost" Type="Self.produktivnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="inv_nomer" />
+            </Principal>
+            <Dependent Role="produktivnost">
+              <PropertyRef Name="inv_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vosproizvedenie_byki">
+          <End Role="byki" Type="Self.byki" Multiplicity="0..1" />
+          <End Role="vosproizvedenie" Type="Self.vosproizvedenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="byki">
+              <PropertyRef Name="id_byka" />
+            </Principal>
+            <Dependent Role="vosproizvedenie">
+              <PropertyRef Name="id_byka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vosproizvedenie_korovy">
+          <End Role="korovy" Type="Self.korovy" Multiplicity="0..1" />
+          <End Role="vosproizvedenie" Type="Self.vosproizvedenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="inv_nomer" />
+            </Principal>
+            <Dependent Role="vosproizvedenie">
+              <PropertyRef Name="inv_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vosproizvedenie_metod_sluchki">
+          <End Role="metod_sluchki" Type="Self.metod_sluchki" Multiplicity="0..1" />
+          <End Role="vosproizvedenie" Type="Self.vosproizvedenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="metod_sluchki">
+              <PropertyRef Name="id_metoda" />
+            </Principal>
+            <Dependent Role="vosproizvedenie">
+              <PropertyRef Name="id_metoda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vybytie_korovy">
+          <End Role="korovy" Type="Self.korovy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="vybytie" Type="Self.vybytie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="inv_nomer" />
+            </Principal>
+            <Dependent Role="vybytie">
+              <PropertyRef Name="inv_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FarmingModelContainer">
+          <EntitySet Name="byki" EntityType="Self.byki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gruppy_krovi" EntityType="Self.gruppy_krovi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kategorii" EntityType="Self.kategorii" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="korovy" EntityType="Self.korovy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="linii" EntityType="Self.linii" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="logi" EntityType="Self.logi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="metod_sluchki" EntityType="Self.metod_sluchki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pol" EntityType="Self.Pol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="porody" EntityType="Self.porody" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="priplod" EntityType="Self.priplod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="produktivnost" EntityType="Self.produktivnost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semejstva" EntityType="Self.semejstva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vosproizvedenie" EntityType="Self.vosproizvedenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vybytie" EntityType="Self.vybytie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_korovy_byki1" Association="Self.FK_korovy_byki1">
+            <End Role="byki" EntitySet="byki" />
+            <End Role="korovy" EntitySet="korovy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_gruppy_krovi" Association="Self.FK_korovy_gruppy_krovi">
+            <End Role="gruppy_krovi" EntitySet="gruppy_krovi" />
+            <End Role="korovy" EntitySet="korovy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_kategorii" Association="Self.FK_korovy_kategorii">
+            <End Role="kategorii" EntitySet="kategorii" />
+            <End Role="korovy" EntitySet="korovy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_korovy" Association="Self.FK_korovy_korovy">
+            <End Role="korovy" EntitySet="korovy" />
+            <End Role="korovy1" EntitySet="korovy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_linii" Association="Self.FK_korovy_linii">
+            <End Role="linii" EntitySet="linii" />
+            <End Role="korovy" EntitySet="korovy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_porody" Association="Self.FK_korovy_porody">
+            <End Role="porody" EntitySet="porody" />
+            <End Role="korovy" EntitySet="korovy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_semejstva" Association="Self.FK_korovy_semejstva">
+            <End Role="semejstva" EntitySet="semejstva" />
+            <End Role="korovy" EntitySet="korovy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priplod_korovy" Association="Self.FK_priplod_korovy">
+            <End Role="korovy" EntitySet="korovy" />
+            <End Role="priplod" EntitySet="priplod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priplod_Pol" Association="Self.FK_priplod_Pol">
+            <End Role="Pol" EntitySet="Pol" />
+            <End Role="priplod" EntitySet="priplod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produktivnost_korovy" Association="Self.FK_produktivnost_korovy">
+            <End Role="korovy" EntitySet="korovy" />
+            <End Role="produktivnost" EntitySet="produktivnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vosproizvedenie_byki" Association="Self.FK_vosproizvedenie_byki">
+            <End Role="byki" EntitySet="byki" />
+            <End Role="vosproizvedenie" EntitySet="vosproizvedenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vosproizvedenie_korovy" Association="Self.FK_vosproizvedenie_korovy">
+            <End Role="korovy" EntitySet="korovy" />
+            <End Role="vosproizvedenie" EntitySet="vosproizvedenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vosproizvedenie_metod_sluchki" Association="Self.FK_vosproizvedenie_metod_sluchki">
+            <End Role="metod_sluchki" EntitySet="metod_sluchki" />
+            <End Role="vosproizvedenie" EntitySet="vosproizvedenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vybytie_korovy" Association="Self.FK_vybytie_korovy">
+            <End Role="korovy" EntitySet="korovy" />
+            <End Role="vybytie" EntitySet="vybytie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FarmingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bull">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OtherId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Childrens" Relationship="FarmingModel.FK_korovy_byki1" FromRole="Bull" ToRole="korovy" />
+          <NavigationProperty Name="Reproductions" Relationship="FarmingModel.FK_vosproizvedenie_byki" FromRole="Bull" ToRole="vosproizvedenie" />
+        </EntityType>
+        <EntityType Name="BloodType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" >
+          </Property>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cows" Relationship="FarmingModel.FK_korovy_gruppy_krovi" FromRole="BloodType" ToRole="korovy" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cows" Relationship="FarmingModel.FK_korovy_kategorii" FromRole="Category" ToRole="korovy" />
+        </EntityType>
+        <EntityType Name="Line">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cows" Relationship="FarmingModel.FK_korovy_linii" FromRole="Line" ToRole="korovy" />
+        </EntityType>
+        <EntityType Name="logi">
+          <Key>
+            <PropertyRef Name="id_event" />
+          </Key>
+          <Property Name="id_event" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tab" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="event" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Breed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cows" Relationship="FarmingModel.FK_korovy_porody" FromRole="Breed" ToRole="korovy" />
+        </EntityType>
+        <EntityType Name="Priplod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CowId" Type="Int32" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" />
+          <NavigationProperty Name="Gender" Relationship="FarmingModel.FK_priplod_Pol" FromRole="priplod" ToRole="Pol" />
+          <NavigationProperty Name="Cow" Relationship="FarmingModel.FK_priplod_korovy" FromRole="priplod" ToRole="korovy" />
+        </EntityType>
+        <EntityType Name="Productivity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CowId" Type="Int32" Nullable="false" />
+          <Property Name="UchtenoLaktacij" Type="Int32" Nullable="false" />
+          <Property Name="UdojKg" Type="Double" Nullable="false" />
+          <Property Name="ZhirProz" Type="Double" Nullable="false" />
+          <Property Name="BelokProz" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Cow" Relationship="FarmingModel.FK_produktivnost_korovy" FromRole="produktivnost" ToRole="korovy" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Family">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cows" Relationship="FarmingModel.FK_korovy_semejstva" FromRole="Family" ToRole="korovy" />
+        </EntityType>
+        <EntityType Name="Retirement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CowId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cow" Relationship="FarmingModel.FK_vybytie_korovy" FromRole="Retirement" ToRole="korovy" />
+        </EntityType>
+        <EntityContainer Name="FarmingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bulls" EntityType="FarmingModel.Bull" />
+          <EntitySet Name="BloodTypes" EntityType="FarmingModel.BloodType" />
+          <EntitySet Name="Categories" EntityType="FarmingModel.Category" />
+          <EntitySet Name="Lines" EntityType="FarmingModel.Line" />
+          <EntitySet Name="logi" EntityType="Self.logi" />
+          <EntitySet Name="Breeds" EntityType="FarmingModel.Breed" />
+          <EntitySet Name="Priplods" EntityType="FarmingModel.Priplod" />
+          <EntitySet Name="Productivities" EntityType="FarmingModel.Productivity" />
+          <EntitySet Name="Families" EntityType="FarmingModel.Family" />
+          <EntitySet Name="Retirements" EntityType="FarmingModel.Retirement" />
+          <EntitySet Name="MethodsSluchki" EntityType="FarmingModel.MethodSluchki" />
+          <EntitySet Name="Genders" EntityType="FarmingModel.Gender" />
+          <EntitySet Name="Users" EntityType="FarmingModel.User" />
+          <AssociationSet Name="FK_priplod_Pol" Association="FarmingModel.FK_priplod_Pol">
+            <End Role="Pol" EntitySet="Genders" />
+            <End Role="priplod" EntitySet="Priplods" />
+          </AssociationSet>
+          <EntitySet Name="Cows" EntityType="FarmingModel.Cow" />
+          <AssociationSet Name="FK_korovy_byki1" Association="FarmingModel.FK_korovy_byki1">
+            <End Role="Bull" EntitySet="Bulls" />
+            <End Role="korovy" EntitySet="Cows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_gruppy_krovi" Association="FarmingModel.FK_korovy_gruppy_krovi">
+            <End Role="BloodType" EntitySet="BloodTypes" />
+            <End Role="korovy" EntitySet="Cows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_kategorii" Association="FarmingModel.FK_korovy_kategorii">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="korovy" EntitySet="Cows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_korovy" Association="FarmingModel.FK_korovy_korovy">
+            <End Role="korovy" EntitySet="Cows" />
+            <End Role="korovy1" EntitySet="Cows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_linii" Association="FarmingModel.FK_korovy_linii">
+            <End Role="Line" EntitySet="Lines" />
+            <End Role="korovy" EntitySet="Cows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_porody" Association="FarmingModel.FK_korovy_porody">
+            <End Role="Breed" EntitySet="Breeds" />
+            <End Role="korovy" EntitySet="Cows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_korovy_semejstva" Association="FarmingModel.FK_korovy_semejstva">
+            <End Role="Family" EntitySet="Families" />
+            <End Role="korovy" EntitySet="Cows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priplod_korovy" Association="FarmingModel.FK_priplod_korovy">
+            <End Role="korovy" EntitySet="Cows" />
+            <End Role="priplod" EntitySet="Priplods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produktivnost_korovy" Association="FarmingModel.FK_produktivnost_korovy">
+            <End Role="korovy" EntitySet="Cows" />
+            <End Role="produktivnost" EntitySet="Productivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vybytie_korovy" Association="FarmingModel.FK_vybytie_korovy">
+            <End Role="korovy" EntitySet="Cows" />
+            <End Role="Retirement" EntitySet="Retirements" />
+          </AssociationSet>
+          <EntitySet Name="Reproductions" EntityType="FarmingModel.Reproduction" />
+          <AssociationSet Name="FK_vosproizvedenie_byki" Association="FarmingModel.FK_vosproizvedenie_byki">
+            <End Role="Bull" EntitySet="Bulls" />
+            <End Role="vosproizvedenie" EntitySet="Reproductions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vosproizvedenie_korovy" Association="FarmingModel.FK_vosproizvedenie_korovy">
+            <End Role="korovy" EntitySet="Cows" />
+            <End Role="vosproizvedenie" EntitySet="Reproductions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vosproizvedenie_metod_sluchki" Association="FarmingModel.FK_vosproizvedenie_metod_sluchki">
+            <End Role="MethodSluchki" EntitySet="MethodsSluchki" />
+            <End Role="vosproizvedenie" EntitySet="Reproductions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MethodSluchki">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reproductions" Relationship="FarmingModel.FK_vosproizvedenie_metod_sluchki" FromRole="MethodSluchki" ToRole="vosproizvedenie" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Priplods" Relationship="FarmingModel.FK_priplod_Pol" FromRole="Pol" ToRole="priplod" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_priplod_Pol">
+          <End Type="FarmingModel.Gender" Role="Pol" Multiplicity="0..1" />
+          <End Type="FarmingModel.Priplod" Role="priplod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="priplod">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cow">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BreedId" Type="Int32" />
+          <Property Name="Porodnost" Type="Double" Nullable="false" />
+          <Property Name="LineId" Type="Int32" />
+          <Property Name="FamilyId" Type="Int32" />
+          <Property Name="BDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BPlace" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="BloodTypeId" Type="Int32" />
+          <Property Name="MotherId" Type="Int32" />
+          <Property Name="FatherId" Type="Int32" />
+          <Property Name="IsInHerd" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Father" Relationship="FarmingModel.FK_korovy_byki1" FromRole="korovy" ToRole="Bull" />
+          <NavigationProperty Name="BloodType" Relationship="FarmingModel.FK_korovy_gruppy_krovi" FromRole="korovy" ToRole="BloodType" />
+          <NavigationProperty Name="Category" Relationship="FarmingModel.FK_korovy_kategorii" FromRole="korovy" ToRole="Category" />
+          <NavigationProperty Name="Childrens" Relationship="FarmingModel.FK_korovy_korovy" FromRole="korovy" ToRole="korovy1" />
+          <NavigationProperty Name="Mother" Relationship="FarmingModel.FK_korovy_korovy" FromRole="korovy1" ToRole="korovy" />
+          <NavigationProperty Name="Line" Relationship="FarmingModel.FK_korovy_linii" FromRole="korovy" ToRole="Line" />
+          <NavigationProperty Name="Breed" Relationship="FarmingModel.FK_korovy_porody" FromRole="korovy" ToRole="Breed" />
+          <NavigationProperty Name="Family" Relationship="FarmingModel.FK_korovy_semejstva" FromRole="korovy" ToRole="Family" />
+          <NavigationProperty Name="Priplods" Relationship="FarmingModel.FK_priplod_korovy" FromRole="korovy" ToRole="priplod" />
+          <NavigationProperty Name="Productivities" Relationship="FarmingModel.FK_produktivnost_korovy" FromRole="korovy" ToRole="produktivnost" />
+          <NavigationProperty Name="Retirements" Relationship="FarmingModel.FK_vybytie_korovy" FromRole="korovy" ToRole="Retirement" />
+          <NavigationProperty Name="Reproductions" Relationship="FarmingModel.FK_vosproizvedenie_korovy" FromRole="korovy" ToRole="vosproizvedenie" />
+        </EntityType>
+        <Association Name="FK_korovy_byki1">
+          <End Type="FarmingModel.Bull" Role="Bull" Multiplicity="0..1" />
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bull">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="FatherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_gruppy_krovi">
+          <End Type="FarmingModel.BloodType" Role="BloodType" Multiplicity="0..1" />
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BloodType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="BloodTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_kategorii">
+          <End Type="FarmingModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_korovy">
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="0..1" />
+          <End Type="FarmingModel.Cow" Role="korovy1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="korovy1">
+              <PropertyRef Name="MotherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_linii">
+          <End Type="FarmingModel.Line" Role="Line" Multiplicity="0..1" />
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Line">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="LineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_porody">
+          <End Type="FarmingModel.Breed" Role="Breed" Multiplicity="0..1" />
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Breed">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="BreedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_korovy_semejstva">
+          <End Type="FarmingModel.Family" Role="Family" Multiplicity="0..1" />
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="korovy">
+              <PropertyRef Name="FamilyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priplod_korovy">
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FarmingModel.Priplod" Role="priplod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="priplod">
+              <PropertyRef Name="CowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produktivnost_korovy">
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FarmingModel.Productivity" Role="produktivnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="produktivnost">
+              <PropertyRef Name="CowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vybytie_korovy">
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FarmingModel.Retirement" Role="Retirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Retirement">
+              <PropertyRef Name="CowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Reproduction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CowId" Type="Int32" />
+          <Property Name="MethodSluchkiId" Type="Int32" />
+          <Property Name="DateOsemeneniya" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChisloSuhihDney" Type="Int32" Nullable="false" />
+          <Property Name="BullId" Type="Int32" />
+          <Property Name="SorPeriod" Type="Int32" Nullable="false" />
+          <Property Name="DateOtela" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Bull" Relationship="FarmingModel.FK_vosproizvedenie_byki" FromRole="vosproizvedenie" ToRole="Bull" />
+          <NavigationProperty Name="Cow" Relationship="FarmingModel.FK_vosproizvedenie_korovy" FromRole="vosproizvedenie" ToRole="korovy" />
+          <NavigationProperty Name="MethodSluchki" Relationship="FarmingModel.FK_vosproizvedenie_metod_sluchki" FromRole="vosproizvedenie" ToRole="MethodSluchki" />
+        </EntityType>
+        <Association Name="FK_vosproizvedenie_byki">
+          <End Type="FarmingModel.Bull" Role="Bull" Multiplicity="0..1" />
+          <End Type="FarmingModel.Reproduction" Role="vosproizvedenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bull">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="vosproizvedenie">
+              <PropertyRef Name="BullId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vosproizvedenie_korovy">
+          <End Type="FarmingModel.Cow" Role="korovy" Multiplicity="0..1" />
+          <End Type="FarmingModel.Reproduction" Role="vosproizvedenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korovy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="vosproizvedenie">
+              <PropertyRef Name="CowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vosproizvedenie_metod_sluchki">
+          <End Type="FarmingModel.MethodSluchki" Role="MethodSluchki" Multiplicity="0..1" />
+          <End Type="FarmingModel.Reproduction" Role="vosproizvedenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodSluchki">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="vosproizvedenie">
+              <PropertyRef Name="MethodSluchkiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FarmingModelContainer" CdmEntityContainer="FarmingEntities">
+          <EntitySetMapping Name="Bulls">
+            <EntityTypeMapping TypeName="FarmingModel.Bull">
+              <MappingFragment StoreEntitySet="byki">
+                <ScalarProperty Name="Id" ColumnName="id_byka" />
+                <ScalarProperty Name="Location" ColumnName="mesto" />
+                <ScalarProperty Name="OtherId" ColumnName="identifikator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BloodTypes">
+            <EntityTypeMapping TypeName="FarmingModel.BloodType">
+              <MappingFragment StoreEntitySet="gruppy_krovi">
+                <ScalarProperty Name="Id" ColumnName="id_gruppy" />
+                <ScalarProperty Name="Name" ColumnName="gruppa_krovi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="FarmingModel.Category">
+              <MappingFragment StoreEntitySet="kategorii">
+                <ScalarProperty Name="Id" ColumnName="id_kategorii" />
+                <ScalarProperty Name="Name" ColumnName="kategoriya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lines">
+            <EntityTypeMapping TypeName="FarmingModel.Line">
+              <MappingFragment StoreEntitySet="linii">
+                <ScalarProperty Name="Id" ColumnName="id_linii" />
+                <ScalarProperty Name="Name" ColumnName="liniya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logi">
+            <EntityTypeMapping TypeName="FarmingModel.logi">
+              <MappingFragment StoreEntitySet="logi">
+                <ScalarProperty Name="id_event" ColumnName="id_event" />
+                <ScalarProperty Name="tab" ColumnName="tab" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="event" ColumnName="event" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Breeds">
+            <EntityTypeMapping TypeName="FarmingModel.Breed">
+              <MappingFragment StoreEntitySet="porody">
+                <ScalarProperty Name="Id" ColumnName="id_porody" />
+                <ScalarProperty Name="Name" ColumnName="poroda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priplods">
+            <EntityTypeMapping TypeName="FarmingModel.Priplod">
+              <MappingFragment StoreEntitySet="priplod">
+                <ScalarProperty Name="GenderId" ColumnName="id_pola" />
+                <ScalarProperty Name="Id" ColumnName="id_priploda" />
+                <ScalarProperty Name="CowId" ColumnName="inv_nomer" />
+                <ScalarProperty Name="Weight" ColumnName="ves" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productivities">
+            <EntityTypeMapping TypeName="FarmingModel.Productivity">
+              <MappingFragment StoreEntitySet="produktivnost">
+                <ScalarProperty Name="Date" ColumnName="data" />
+                <ScalarProperty Name="Id" ColumnName="id_zapisi" />
+                <ScalarProperty Name="CowId" ColumnName="inv_nomer" />
+                <ScalarProperty Name="UchtenoLaktacij" ColumnName="uchteno_laktacij" />
+                <ScalarProperty Name="UdojKg" ColumnName="udoj(kg)" />
+                <ScalarProperty Name="ZhirProz" ColumnName="zhir(proz)" />
+                <ScalarProperty Name="BelokProz" ColumnName="belok(proz)" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Families">
+            <EntityTypeMapping TypeName="FarmingModel.Family">
+              <MappingFragment StoreEntitySet="semejstva">
+                <ScalarProperty Name="Id" ColumnName="id_semejstva" />
+                <ScalarProperty Name="Name" ColumnName="semejstvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Retirements">
+            <EntityTypeMapping TypeName="FarmingModel.Retirement">
+              <MappingFragment StoreEntitySet="vybytie">
+                <ScalarProperty Name="Id" ColumnName="id_vybytiya" />
+                <ScalarProperty Name="CowId" ColumnName="inv_nomer" />
+                <ScalarProperty Name="Date" ColumnName="data" />
+                <ScalarProperty Name="Reason" ColumnName="prichina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MethodsSluchki">
+            <EntityTypeMapping TypeName="FarmingModel.MethodSluchki">
+              <MappingFragment StoreEntitySet="metod_sluchki">
+                <ScalarProperty Name="Name" ColumnName="metod" />
+                <ScalarProperty Name="Id" ColumnName="id_metoda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="FarmingModel.Gender">
+              <MappingFragment StoreEntitySet="Pol">
+                <ScalarProperty Name="Name" ColumnName="pol" />
+                <ScalarProperty Name="Id" ColumnName="id_pola" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FarmingModel.User">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Phone" ColumnName="telefon" />
+                <ScalarProperty Name="MiddleName" ColumnName="otchestvo" />
+                <ScalarProperty Name="FirstName" ColumnName="imya" />
+                <ScalarProperty Name="LastName" ColumnName="familiya" />
+                <ScalarProperty Name="Password" ColumnName="password" />
+                <ScalarProperty Name="Login" ColumnName="login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cows">
+            <EntityTypeMapping TypeName="FarmingModel.Cow">
+              <MappingFragment StoreEntitySet="korovy">
+                <ScalarProperty Name="IsInHerd" ColumnName="v_stade" />
+                <ScalarProperty Name="FatherId" ColumnName="id_byka_otec" />
+                <ScalarProperty Name="MotherId" ColumnName="inv_nomer_mat" />
+                <ScalarProperty Name="BloodTypeId" ColumnName="id_gruppy" />
+                <ScalarProperty Name="CategoryId" ColumnName="id_kategorii" />
+                <ScalarProperty Name="Age" ColumnName="vozrast" />
+                <ScalarProperty Name="Weight" ColumnName="zhivaya_massa" />
+                <ScalarProperty Name="BPlace" ColumnName="mesto_rozhdeniya" />
+                <ScalarProperty Name="BDay" ColumnName="data_rozhdeniya" />
+                <ScalarProperty Name="FamilyId" ColumnName="id_semejstva" />
+                <ScalarProperty Name="LineId" ColumnName="id_linii" />
+                <ScalarProperty Name="Porodnost" ColumnName="porodnost" />
+                <ScalarProperty Name="BreedId" ColumnName="id_porody" />
+                <ScalarProperty Name="Name" ColumnName="klichka" />
+                <ScalarProperty Name="Id" ColumnName="inv_nomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reproductions">
+            <EntityTypeMapping TypeName="FarmingModel.Reproduction">
+              <MappingFragment StoreEntitySet="vosproizvedenie">
+                <ScalarProperty Name="DateOtela" ColumnName="data_otela" />
+                <ScalarProperty Name="SorPeriod" ColumnName="sor_period" />
+                <ScalarProperty Name="BullId" ColumnName="id_byka" />
+                <ScalarProperty Name="ChisloSuhihDney" ColumnName="chislo_suhih_dney" />
+                <ScalarProperty Name="DateOsemeneniya" ColumnName="data_osemeneniya" />
+                <ScalarProperty Name="MethodSluchkiId" ColumnName="id_metoda" />
+                <ScalarProperty Name="CowId" ColumnName="inv_nomer" />
+                <ScalarProperty Name="Id" ColumnName="prosto_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

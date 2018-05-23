@@ -111,7 +111,8 @@
                                       Click="infoBtn_Click"
                                       DockPanel.Dock="Right"
                                       IsChecked="{Binding IsOpenInformationBox, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
-                                      Style="{StaticResource MaterialDesignActionToggleButton}">
+                                      Style="{StaticResource MaterialDesignActionToggleButton}"
+                                      Margin="0 0 -5 0">
                             <materialDesign:ToggleButtonAssist.OnContent>
                                 <materialDesign:PackIcon Kind="Information"/>
                             </materialDesign:ToggleButtonAssist.OnContent>
@@ -130,6 +131,41 @@
                                                 CaretBrush="{DynamicResource PrimaryHueMidForegroundBrush}"
                                                 Margin="0 0 12 0"/>
 
+                        <ItemsControl ItemsSource="{Binding Navigation.Content.ActionItems}"
+                                      DockPanel.Dock="Right"
+                                      VirtualizingStackPanel.IsVirtualizing="True"
+                                      VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                      ScrollViewer.CanContentScroll="True"
+                                      VerticalAlignment="Center">
+                            <ItemsControl.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                                                  IsChecked="{Binding IsActive}"
+                                                  Command="{Binding Command}"
+                                                  CommandParameter="{Binding}">
+                                        <materialDesign:ToggleButtonAssist.OnContent>
+                                            
+                                            <materialDesign:PackIcon Kind="{Binding IconKind}"/>
+                                            
+                                        </materialDesign:ToggleButtonAssist.OnContent>
+
+                                        <materialDesign:PackIcon Kind="{Binding DeactiveIconKind}"                           
+                                                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+
+                                    </ToggleButton>
+
+                                </DataTemplate>
+
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
                         <TextBlock x:Name="navTextBox"
                                    DockPanel.Dock="Left"
                                    VerticalAlignment="Center"                            
@@ -145,7 +181,6 @@
 
                     <Border x:Name="infoHeader"
                             Grid.Column="1"
-                            DockPanel.Dock="Right"
                             Width="250"
                             Margin="0 0 -250 0"
                             Background="{DynamicResource InfoBoxHeaderBackground}"
@@ -154,8 +189,7 @@
 
 
 
-                        <materialDesign:PopupBox DockPanel.Dock="Right"
-                                                 HorizontalAlignment="Right"
+                        <materialDesign:PopupBox HorizontalAlignment="Right"
                                                  PlacementMode="BottomAndAlignRightEdges" 
                                                  StaysOpen="False">
                             <materialDesign:PopupBox.ToggleContent>
