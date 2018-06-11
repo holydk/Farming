@@ -1,4 +1,5 @@
 ﻿using Farming.WpfClient.Models;
+using MaterialDesignThemes.Wpf;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,79 +8,71 @@ namespace Farming.WpfClient.ViewModels.Database
 {
     public class BreedsViewModel : DatabaseTableViewModel<BreedViewModel>
     {
-        public BreedsViewModel()
-            : base("Породы")
+        public BreedsViewModel(ISnackbarMessageQueue snackbarMessageQueue, User user)
+            : base("Породы", user, snackbarMessageQueue)
         {
 
         }
 
-        public async override Task UpdateAsync()
+        protected async override Task UpdateAsync(FarmingEntities db)
         {
-            if (Models.Any())
-                Models.Clear();
+            var breeds = await db.Breeds.ToArrayAsync();
 
-            using (var db = new FarmingEntities())
+            foreach (var breed in breeds)
             {
-                var breeds = await db.Breeds.ToArrayAsync();
-
-                foreach (var breed in breeds)
+                Models.Add(new BreedViewModel()
                 {
-                    Models.Add(new BreedViewModel()
-                    {
-                        Id = breed.Id,
-                        Name = breed.Name
-                    });
-                }
+                    Id = breed.Id,
+                    Name = breed.Name
+                });
             }
         }
 
-        protected async override Task AddAsync(BreedViewModel model)
+        protected async override Task AddAsync(FarmingEntities db, BreedViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var newBType = new Breed()
             {
-                var newBType = new Breed()
-                {
-                    Name = model.Name
-                };
+                Name = model.Name
+            };
 
-                db.Breeds.Add(newBType);
+            db.Breeds.Add(newBType);
+
+            await db.SaveChangesAsync();
+
+            model.Id = newBType.Id;
+
+            Models.Add(model);
+        }
+
+        protected async override Task UpdateAsync(FarmingEntities db, BreedViewModel model)
+        {
+            var breed = await db.Breeds.FindAsync(model.Id);
+
+            if (breed != null)
+            {
+                breed.Name = model.Name;
 
                 await db.SaveChangesAsync();
 
-                model.Id = newBType.Id;
+                var breedVm = Models.FirstOrDefault(b => b.Id == breed.Id);
 
-                Models.Add(model);
-            }
-        }
-
-        protected async override Task UpdateAsync(BreedViewModel model)
-        {
-            using (var db = new FarmingEntities())
-            {
-                var breed = await db.Breeds.FindAsync(model.Id);
-
-                if (breed != null)
+                if (breedVm != null)
                 {
-                    breed.Name = model.Name;
-
-                    await db.SaveChangesAsync();
+                    breedVm.Name = model.Name;
                 }
             }
         }
 
-        protected async override Task DeleteAsync(BreedViewModel model)
+        protected async override Task DeleteAsync(FarmingEntities db, BreedViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var breed = await db.Breeds.FindAsync(model.Id);
+
+            if (breed != null)
             {
-                var breed = await db.Breeds.FindAsync(model.Id);
+                db.Breeds.Remove(breed);
 
-                if (breed != null)
-                {
-                    db.Breeds.Remove(breed);
-
-                    await db.SaveChangesAsync();
-                    Models.Remove(model);
-                }
+                await db.SaveChangesAsync();
+                Models.Remove(model);
             }
         }
     }

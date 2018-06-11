@@ -9,7 +9,6 @@
         xmlns:models="clr-namespace:Farming.WpfClient.Models"
         mc:Ignorable="d"
         Title="{Binding Title}"  
-        Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignLightForeground}"
         TextElement.FontWeight="Regular"
         TextOptions.TextFormattingMode="Ideal" 
@@ -22,6 +21,37 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+
+        <DataTemplate DataType="{x:Type models:ActionItem}">
+
+            <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                                                  IsChecked="{Binding IsActive}"
+                                                  Command="{Binding Command}"
+                                                  CommandParameter="{Binding}">
+                <materialDesign:ToggleButtonAssist.OnContent>
+
+                    <materialDesign:PackIcon Kind="{Binding IconKind}"/>
+
+                </materialDesign:ToggleButtonAssist.OnContent>
+
+                <materialDesign:PackIcon Kind="{Binding DeactiveIconKind}"                           
+                                                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+
+            </ToggleButton>
+
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type models:CommandItem}">
+
+            <Button Command="{Binding Command}"
+                    Style="{StaticResource MaterialDesignToolForegroundButton}">
+
+                <materialDesign:PackIcon Kind="{Binding IconKind}"
+                                         Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
+
+            </Button>
+
+        </DataTemplate>
 
         <Style TargetType="{x:Type Run}">
             <Setter Property="Cursor" Value="Hand"/>
@@ -98,6 +128,9 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
+                    <materialDesign:Snackbar x:Name="MainSnackbar"
+                                             Grid.ColumnSpan="2"/>
+
                     <DockPanel Grid.Column="0"
                                Margin="24 0 24 0">
 
@@ -122,43 +155,12 @@
 
                         </ToggleButton>
 
-                        <controls:SearchTextBox DockPanel.Dock="Right"
-                                                Width="150"
-                                                Search="SearchTextBox_Search"
-                                                materialDesign:HintAssist.Hint="Поиск"
-                                                VerticalContentAlignment="Center"
-                                                BorderBrush="{DynamicResource PrimaryHueMidForegroundBrush}"
-                                                CaretBrush="{DynamicResource PrimaryHueMidForegroundBrush}"
-                                                Margin="0 0 12 0"/>
-
                         <ItemsControl ItemsSource="{Binding Navigation.Content.ActionItems}"
                                       DockPanel.Dock="Right"
                                       VirtualizingStackPanel.IsVirtualizing="True"
                                       VirtualizingStackPanel.VirtualizationMode="Recycling"
                                       ScrollViewer.CanContentScroll="True"
                                       VerticalAlignment="Center">
-                            <ItemsControl.ItemTemplate>
-
-                                <DataTemplate>
-
-                                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
-                                                  IsChecked="{Binding IsActive}"
-                                                  Command="{Binding Command}"
-                                                  CommandParameter="{Binding}">
-                                        <materialDesign:ToggleButtonAssist.OnContent>
-                                            
-                                            <materialDesign:PackIcon Kind="{Binding IconKind}"/>
-                                            
-                                        </materialDesign:ToggleButtonAssist.OnContent>
-
-                                        <materialDesign:PackIcon Kind="{Binding DeactiveIconKind}"                           
-                                                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
-
-                                    </ToggleButton>
-
-                                </DataTemplate>
-
-                            </ItemsControl.ItemTemplate>
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VirtualizingStackPanel Orientation="Horizontal" />

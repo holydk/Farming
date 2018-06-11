@@ -1,5 +1,6 @@
 ﻿using Farming.WpfClient.Commands;
 using Farming.WpfClient.Models;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,8 +24,8 @@ namespace Farming.WpfClient.ViewModels
 
         public ICommand GoBackToCommand { get; }
 
-        public NavigationPageViewModel(INavigation navigation, string title)
-            : base(title)
+        public NavigationPageViewModel(INavigation navigation, string title, ISnackbarMessageQueue snackbarMessageQueue)
+            : base(title, snackbarMessageQueue)
         {
             Navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
 

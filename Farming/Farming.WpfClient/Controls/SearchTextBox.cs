@@ -17,6 +17,10 @@ namespace Farming.WpfClient.Controls
 
         protected double _defaultContentWidth;
 
+        protected double _minimizeWidth;
+
+        protected bool _isInit = false;
+
         public event Action<string> Search;
 
         public bool IsOpen
@@ -33,7 +37,7 @@ namespace Farming.WpfClient.Controls
                 Loaded -= loaded;
 
                 //if (IsOpen)
-                    _defaultContentWidth = Width;
+                    //_defaultContentWidth = Width;
             };
 
             Loaded += loaded;
@@ -58,7 +62,7 @@ namespace Farming.WpfClient.Controls
 
                         if (searchBtn != null)
                         {
-                            BeginAnimation(searchTb, searchBtn.ActualWidth);
+                            BeginAnimation(searchTb, searchTb._minimizeWidth);
                         }
                     }
                 }
@@ -71,10 +75,19 @@ namespace Farming.WpfClient.Controls
 
             if (!sizeInfo.WidthChanged || _isAnimated || _searchBtn == null) return;
 
-            if (!IsOpen)
-                Width = _searchBtn.ActualWidth;
-            else
+            if (!_isInit)
+            {
+                _isInit = true;
+
                 _defaultContentWidth = sizeInfo.NewSize.Width;
+            }
+
+            _minimizeWidth = _searchBtn.ActualWidth;
+
+            if (!IsOpen)
+            {
+                BeginAnimation(this, _minimizeWidth, new TimeSpan(0));
+            }
         }
 
         public override void OnApplyTemplate()
@@ -131,9 +144,9 @@ namespace Farming.WpfClient.Controls
 
         protected virtual void OnSearch() => Search?.Invoke(Text);
 
-        private static void BeginAnimation(SearchTextBox searchTextBox, double toWidth)
+        private static void BeginAnimation(SearchTextBox searchTextBox, double toWidth, TimeSpan? time = null)
         {
-            var widthAnimation = new DoubleAnimation(toWidth, new TimeSpan(0, 0, 0, 0, 200))
+            var widthAnimation = new DoubleAnimation(toWidth, time ?? new TimeSpan(0, 0, 0, 0, 200))
             {
                 EasingFunction = new SineEase()
                 {

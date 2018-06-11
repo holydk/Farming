@@ -23,7 +23,8 @@
 
             </Border>
 
-            <ContentPresenter Grid.Column="1"
+            <ContentPresenter x:Name="PART_tableContent"
+                              Grid.Column="1"
                               Panel.ZIndex="-1"
                               WindowChrome.IsHitTestVisibleInChrome="True"/>
 
@@ -44,6 +45,27 @@
         </Grid>
 
         <ControlTemplate.Triggers>
+
+            <DataTrigger Binding="{Binding Models}" Value="{x:Null}">
+                <Setter TargetName="PART_tableContent" Property="Content">
+                    <Setter.Value>
+                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                     Value="0"
+                                     Foreground="Aqua"
+                                     IsIndeterminate="True" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding IsBusy}" Value="true">
+                <Setter TargetName="PART_tableContent" Property="Content">
+                    <Setter.Value>
+                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                     Value="0"
+                                     IsIndeterminate="True" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
 
             <Trigger Property="ActionContent" Value="{x:Null}">
                 <Trigger.EnterActions>

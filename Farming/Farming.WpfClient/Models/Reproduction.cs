@@ -20,7 +20,7 @@ namespace Farming.WpfClient.Models
         public System.DateTime DateOsemeneniya { get; set; }
         public int ChisloSuhihDney { get; set; }
         public Nullable<int> BullId { get; set; }
-        public int SorPeriod { get; set; }
+        public int SerPeriod { get; set; }
         public System.DateTime DateOtela { get; set; }
     
         public virtual Bull Bull { get; set; }

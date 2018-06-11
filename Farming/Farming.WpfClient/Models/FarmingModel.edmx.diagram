@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="FarmingModel.BloodType" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmingModel.Category" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmingModel.Line" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FarmingModel.logi" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmingModel.Log" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmingModel.Breed" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmingModel.Priplod" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmingModel.Productivity" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
@@ -34,6 +34,8 @@
         <AssociationConnector Association="FarmingModel.FK_vosproizvedenie_byki" />
         <AssociationConnector Association="FarmingModel.FK_vosproizvedenie_korovy" />
         <AssociationConnector Association="FarmingModel.FK_vosproizvedenie_metod_sluchki" />
+        <EntityTypeShape EntityType="FarmingModel.UserType" Width="1.5" PointX="8" PointY="11.25" />
+        <AssociationConnector Association="FarmingModel.FK_users_UsersTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

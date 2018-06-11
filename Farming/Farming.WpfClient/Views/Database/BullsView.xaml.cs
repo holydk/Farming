@@ -24,7 +24,16 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is BullsViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new BullDialog("Изменить", viewModel.SelectedModel);
+                var bullVm = new BullViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Location = viewModel.SelectedModel.Location,
+                    OtherId = viewModel.SelectedModel.OtherId,
+                    Childrens = viewModel.SelectedModel.Childrens,
+                    Reproductions = viewModel.SelectedModel.Reproductions
+                };
+
+                return new BullDialog("Изменить", bullVm);
             }
 
             return null;

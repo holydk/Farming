@@ -1,5 +1,6 @@
 ﻿using Farming.WpfClient.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,20 +17,25 @@ namespace Farming.WpfClient.Controls
             set { SetValue(ActionContentProperty, value); }
         }
 
-        public List<ActionItem> ActionItems { get; }
+        public List<ICommandItem> ActionItems { get; }
 
         public PageView()
         {
-            ActionItems = new List<ActionItem>();
+            ActionItems = new List<ICommandItem>();
         }
 
         private void DeactivatedItemsBesides(ActionItem item)
         {
-            foreach (var _item in ActionItems)
+            var items = ActionItems.OfType<ActionItem>();
+
+            if (items != null && items.Any())
             {
-                if (_item.Title != item.Title)
+                foreach (var _item in items)
                 {
-                    _item.IsActive = false;
+                    if (_item.Title != item.Title)
+                    {
+                        _item.IsActive = false;
+                    }
                 }
             }
         }

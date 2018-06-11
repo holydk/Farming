@@ -36,7 +36,13 @@ namespace Farming.WpfClient.ViewModels.Database
         public virtual CowViewModel Cow
         {
             get => Get(() => Cow);
-            set => Set(() => Cow, value);
+            set
+            {
+                Set(() => Cow, value);
+
+                if (Cow != null)
+                    CowId = Cow.Id;
+            }
         }
 
         public RetirementViewModel()

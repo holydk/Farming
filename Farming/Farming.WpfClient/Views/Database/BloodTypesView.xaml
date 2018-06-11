@@ -14,7 +14,18 @@
     <ListBox DockPanel.Dock="Top"
              Grid.IsSharedSizeScope="True"
              ItemsSource="{Binding Models}"
-             HorizontalContentAlignment="Stretch">
+             HorizontalContentAlignment="Stretch"
+             VirtualizingStackPanel.IsVirtualizing="True"
+             VirtualizingStackPanel.ScrollUnit="Pixel"
+             ScrollViewer.CanContentScroll="True">
+        <ListBox.ItemContainerStyle>
+            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource CustomMaterialDesignListBoxItem}"/>
+        </ListBox.ItemContainerStyle>
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <VirtualizingStackPanel Orientation="Vertical" />
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
         <ListBox.ItemTemplate>
 
             <DataTemplate>
@@ -84,10 +95,6 @@
                 </Border>
 
                 <DataTemplate.Triggers>
-
-                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="true">
-                        <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-                    </DataTrigger>
 
                     <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="true">
                         <Setter TargetName="PART_HelpActions" Property="Visibility" Value="Visible"/>

@@ -13,9 +13,17 @@
     <ListBox DockPanel.Dock="Top"
              Grid.IsSharedSizeScope="True"
              ItemsSource="{Binding Models}"
-             HorizontalContentAlignment="Stretch">
+             HorizontalContentAlignment="Stretch"
+             VirtualizingStackPanel.IsVirtualizing="True"
+             VirtualizingStackPanel.ScrollUnit="Pixel"
+             ScrollViewer.CanContentScroll="True">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <VirtualizingStackPanel Orientation="Vertical" />
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
         <ListBox.ItemContainerStyle>
-            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource CustomMaterialDesignListBoxItem}">
                 <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListBoxItem_PreviewMouseLeftButtonDown"/>
             </Style>
         </ListBox.ItemContainerStyle>
@@ -51,7 +59,15 @@
 
                                     </TextBlock>
 
-                                    <TextBlock Text="{Binding Location}"
+                                    <TextBlock x:Name="PART_bullLocation"
+                                               FontSize="14"
+                                               Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                                        
+                                        <Run Text="{Binding Location}"/> -&#160;
+
+                                    </TextBlock>
+
+                                    <TextBlock Text="{Binding OtherId}"
                                                FontSize="14"
                                                Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
 
@@ -167,6 +183,10 @@
                         </MultiDataTrigger.Conditions>
                         <Setter TargetName="PART_HelpActions" Property="Opacity" Value="1"/>
                     </MultiDataTrigger>
+
+                    <DataTrigger Binding="{Binding Location}" Value="{x:Null}">
+                        <Setter TargetName="PART_bullLocation" Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
 
                 </DataTemplate.Triggers>
             </DataTemplate>

@@ -115,14 +115,23 @@
         </EntityType>
         <EntityType Name="users">
           <Key>
-            <PropertyRef Name="login" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="familiya" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="imya" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="otchestvo" Type="varchar" MaxLength="50" />
           <Property Name="telefon" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="vosproizvedenie">
           <Key>
@@ -270,6 +279,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_users_UsersTypes">
+          <End Role="UsersTypes" Type="Self.UsersTypes" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_vosproizvedenie_byki">
           <End Role="byki" Type="Self.byki" Multiplicity="0..1" />
           <End Role="vosproizvedenie" Type="Self.vosproizvedenie" Multiplicity="*" />
@@ -334,6 +355,7 @@
           <EntitySet Name="produktivnost" EntityType="Self.produktivnost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="semejstva" EntityType="Self.semejstva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersTypes" EntityType="Self.UsersTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vosproizvedenie" EntityType="Self.vosproizvedenie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vybytie" EntityType="Self.vybytie" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_korovy_byki1" Association="Self.FK_korovy_byki1">
@@ -375,6 +397,10 @@
           <AssociationSet Name="FK_produktivnost_korovy" Association="Self.FK_produktivnost_korovy">
             <End Role="korovy" EntitySet="korovy" />
             <End Role="produktivnost" EntitySet="produktivnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_UsersTypes" Association="Self.FK_users_UsersTypes">
+            <End Role="UsersTypes" EntitySet="UsersTypes" />
+            <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="FK_vosproizvedenie_byki" Association="Self.FK_vosproizvedenie_byki">
             <End Role="byki" EntitySet="byki" />
@@ -432,15 +458,15 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cows" Relationship="FarmingModel.FK_korovy_linii" FromRole="Line" ToRole="korovy" />
         </EntityType>
-        <EntityType Name="logi">
+        <EntityType Name="Log">
           <Key>
-            <PropertyRef Name="id_event" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id_event" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tab" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="event" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TableId" Type="Int32" Nullable="false" />
+          <Property Name="Event" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Breed">
           <Key>
@@ -459,7 +485,7 @@
           <Property Name="Weight" Type="Double" Nullable="false" />
           <Property Name="GenderId" Type="Int32" />
           <NavigationProperty Name="Gender" Relationship="FarmingModel.FK_priplod_Pol" FromRole="priplod" ToRole="Pol" />
-          <NavigationProperty Name="Cow" Relationship="FarmingModel.FK_priplod_korovy" FromRole="priplod" ToRole="korovy" />
+          <NavigationProperty Name="Mother" Relationship="FarmingModel.FK_priplod_korovy" FromRole="priplod" ToRole="korovy" />
         </EntityType>
         <EntityType Name="Productivity">
           <Key>
@@ -497,7 +523,7 @@
           <EntitySet Name="BloodTypes" EntityType="FarmingModel.BloodType" />
           <EntitySet Name="Categories" EntityType="FarmingModel.Category" />
           <EntitySet Name="Lines" EntityType="FarmingModel.Line" />
-          <EntitySet Name="logi" EntityType="Self.logi" />
+          <EntitySet Name="Logs" EntityType="FarmingModel.Log" />
           <EntitySet Name="Breeds" EntityType="FarmingModel.Breed" />
           <EntitySet Name="Priplods" EntityType="FarmingModel.Priplod" />
           <EntitySet Name="Productivities" EntityType="FarmingModel.Productivity" />
@@ -564,6 +590,11 @@
             <End Role="MethodSluchki" EntitySet="MethodsSluchki" />
             <End Role="vosproizvedenie" EntitySet="Reproductions" />
           </AssociationSet>
+          <EntitySet Name="UsersTypes" EntityType="FarmingModel.UserType" />
+          <AssociationSet Name="FK_users_UsersTypes" Association="FarmingModel.FK_users_UsersTypes">
+            <End Role="UsersTypes" EntitySet="UsersTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="MethodSluchki">
           <Key>
@@ -583,7 +614,7 @@
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Login" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -591,6 +622,9 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserType" Relationship="FarmingModel.FK_users_UsersTypes" FromRole="User" ToRole="UsersTypes" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK_priplod_Pol">
           <End Type="FarmingModel.Gender" Role="Pol" Multiplicity="0..1" />
@@ -772,7 +806,7 @@
           <Property Name="DateOsemeneniya" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ChisloSuhihDney" Type="Int32" Nullable="false" />
           <Property Name="BullId" Type="Int32" />
-          <Property Name="SorPeriod" Type="Int32" Nullable="false" />
+          <Property Name="SerPeriod" Type="Int32" Nullable="false" />
           <Property Name="DateOtela" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Bull" Relationship="FarmingModel.FK_vosproizvedenie_byki" FromRole="vosproizvedenie" ToRole="Bull" />
           <NavigationProperty Name="Cow" Relationship="FarmingModel.FK_vosproizvedenie_korovy" FromRole="vosproizvedenie" ToRole="korovy" />
@@ -811,6 +845,26 @@
             </Principal>
             <Dependent Role="vosproizvedenie">
               <PropertyRef Name="MethodSluchkiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="FarmingModel.FK_users_UsersTypes" FromRole="UsersTypes" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_users_UsersTypes">
+          <End Type="FarmingModel.UserType" Role="UsersTypes" Multiplicity="1" />
+          <End Type="FarmingModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -853,14 +907,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="logi">
-            <EntityTypeMapping TypeName="FarmingModel.logi">
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="FarmingModel.Log">
               <MappingFragment StoreEntitySet="logi">
-                <ScalarProperty Name="id_event" ColumnName="id_event" />
-                <ScalarProperty Name="tab" ColumnName="tab" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="event" ColumnName="event" />
-                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Id" ColumnName="id_event" />
+                <ScalarProperty Name="TableName" ColumnName="tab" />
+                <ScalarProperty Name="TableId" ColumnName="id" />
+                <ScalarProperty Name="Event" ColumnName="event" />
+                <ScalarProperty Name="Date" ColumnName="date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -932,6 +986,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FarmingModel.User">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
                 <ScalarProperty Name="Phone" ColumnName="telefon" />
                 <ScalarProperty Name="MiddleName" ColumnName="otchestvo" />
                 <ScalarProperty Name="FirstName" ColumnName="imya" />
@@ -966,13 +1022,21 @@
             <EntityTypeMapping TypeName="FarmingModel.Reproduction">
               <MappingFragment StoreEntitySet="vosproizvedenie">
                 <ScalarProperty Name="DateOtela" ColumnName="data_otela" />
-                <ScalarProperty Name="SorPeriod" ColumnName="sor_period" />
+                <ScalarProperty Name="SerPeriod" ColumnName="sor_period" />
                 <ScalarProperty Name="BullId" ColumnName="id_byka" />
                 <ScalarProperty Name="ChisloSuhihDney" ColumnName="chislo_suhih_dney" />
                 <ScalarProperty Name="DateOsemeneniya" ColumnName="data_osemeneniya" />
                 <ScalarProperty Name="MethodSluchkiId" ColumnName="id_metoda" />
                 <ScalarProperty Name="CowId" ColumnName="inv_nomer" />
                 <ScalarProperty Name="Id" ColumnName="prosto_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersTypes">
+            <EntityTypeMapping TypeName="FarmingModel.UserType">
+              <MappingFragment StoreEntitySet="UsersTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

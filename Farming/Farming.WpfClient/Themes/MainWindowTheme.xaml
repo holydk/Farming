@@ -68,141 +68,192 @@
                     <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
                         <materialDesign:DrawerHost.LeftDrawerContent>
                             
-                            <Border BorderBrush="{DynamicResource MaterialDesignDarkSeparatorBackground}" 
-                                    BorderThickness="0,0,1,0"
-                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                            <DockPanel MinWidth="238"
+                                       WindowChrome.IsHitTestVisibleInChrome="True">
 
-                                <DockPanel MinWidth="212">
+                                <Border DockPanel.Dock="Top"
+                                        Padding="12">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Farming.WpfClient;component/Resources/MenuHeaderBG.jpg" 
+                                                    Stretch="UniformToFill"/>
+                                    </Border.Background>
 
-                                    <StackPanel DockPanel.Dock="Top"
-                                                Orientation="Horizontal"
-                                                Margin="16 12 16 0"
-                                                Height="48">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
 
-                                        <views:AnimatedIcon HorizontalAlignment="Left"
-                                                            VerticalAlignment="Center"
-                                                            Margin="0 10 0 0"
-                                                            Width="35">
-                                            <views:AnimatedIcon.RenderTransform>
-                                                <ScaleTransform ScaleX="0.2" ScaleY="0.2"/>
-                                            </views:AnimatedIcon.RenderTransform>
-                                        </views:AnimatedIcon>
+                                        <materialDesign:PackIcon Grid.Row="0"
+                                                                 Kind="AccountCircle"
+                                                                 VerticalAlignment="Center"
+                                                                 Width="44"
+                                                                 Height="44"
+                                                                 Margin="0 0 0 24"
+                                                                 Opacity=".8"/>
 
-                                        <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"                                                   
-                                                   Opacity="0.5"
-                                                   Margin="16 0 0 0"
-                                                   Text="MATH STATS" 
-                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="{Binding User.Login}"
+                                                   Margin="6 0 0 0"
+                                                   Foreground="{StaticResource MaterialDesignPaper}"
+                                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                                   Opacity="1"/>
 
-                                    </StackPanel>
+                                        <TextBlock Grid.Row="2"
+                                                   Margin="6 0 0 0"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Foreground="{StaticResource MaterialDesignPaper}"
+                                                   Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                   Opacity="1">
 
-                                    <Separator DockPanel.Dock="Top" 
-                                               Style="{StaticResource MaterialDesignDarkSeparator}"/>
+                                            <Run Text="{Binding User.LastName}"/> <Run Text="{Binding User.FirstName}"/> <Run Text="{Binding User.MiddleName}"/>
 
-                                    <ListBox DockPanel.Dock="Top"
-                                             x:Name="navListBox"
-                                             Grid.IsSharedSizeScope="True"
-                                             ItemsSource="{Binding NavigationItems}">
-                                        <ListBox.ItemTemplate>
+                                        </TextBlock>
 
-                                            <DataTemplate DataType="{x:Type models:INavigationItem}">
+                                    </Grid>
 
-                                                <Border x:Name="Border"
-                                                        Padding="12 0 12 0"
-                                                        BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                </Border>
 
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                                            <ColumnDefinition />
-                                                        </Grid.ColumnDefinitions>
+                                <Separator DockPanel.Dock="Top"
+                                           Padding="0"
+                                           Margin="0"
+                                           Height="1"
+                                           Style="{StaticResource MaterialDesignDarkSeparator}"/>
 
-                                                        <materialDesign:PackIcon
-                                                                Kind="{Binding IconKind}"
-                                                                VerticalAlignment="Center"
-                                                                Width="22"
-                                                                Height="22"/>
+                                <ScrollViewer x:Name="PART_mainMenuScrollViewer"
+                                              Padding="0 8 0 8"
+                                              CanContentScroll="True">
 
-                                                        <TextBlock x:Name="textTitle"
-                                                                   Text="{Binding Title}" 
-                                                                   Margin="12 0 0 0"
-                                                                   FontSize="14"
-                                                                   Style="{StaticResource MaterialDesignSubheadingTextBlock}"
-                                                                   VerticalAlignment="Center"
-                                                                   Grid.Column="1"/>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
 
-                                                    </Grid>
+                                        <ListBox Grid.Row="0"
+                                                 x:Name="navListBox"
+                                                 Grid.IsSharedSizeScope="True"
+                                                 ItemsSource="{Binding NavigationItems}" 
+                                                 VirtualizingStackPanel.IsVirtualizing="True"
+                                                 VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                                 ScrollViewer.CanContentScroll="True"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                            <ListBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel Orientation="Vertical"/>
+                                                </ItemsPanelTemplate>
+                                            </ListBox.ItemsPanel>
+                                            <ListBox.ItemTemplate>
 
-                                                </Border>
+                                                <DataTemplate DataType="{x:Type models:INavigationItem}">
 
-                                                <DataTemplate.Triggers>
+                                                    <Border x:Name="Border"
+                                                            Padding="8 0 8 0"
+                                                            BorderBrush="{DynamicResource MaterialDesignDivider}">
 
-                                                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="true">
-                                                        <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-                                                    </DataTrigger>
-                                                    
-                                                </DataTemplate.Triggers>
-                                                
-                                            </DataTemplate>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                                <ColumnDefinition />
+                                                            </Grid.ColumnDefinitions>
 
-                                        </ListBox.ItemTemplate>
+                                                            <materialDesign:PackIcon Kind="{Binding IconKind}"
+                                                                                     VerticalAlignment="Center"
+                                                                                     Width="22"
+                                                                                     Height="22"/>
 
-                                    </ListBox>
+                                                            <TextBlock x:Name="textTitle"
+                                                                       Text="{Binding Title}" 
+                                                                       Margin="24 0 0 0"
+                                                                       FontSize="14"
+                                                                       Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                                                                       VerticalAlignment="Center"
+                                                                       Grid.Column="1"/>
 
-                                    <Separator DockPanel.Dock="Top" 
-                                               Style="{StaticResource MaterialDesignDarkSeparator}"/>
+                                                        </Grid>
 
-                                    <ItemsControl ItemsSource="{Binding Links}"
-                                                  VirtualizingStackPanel.IsVirtualizing="True"
-                                                  VirtualizingStackPanel.VirtualizationMode="Recycling"
-                                                  ScrollViewer.CanContentScroll="True"
-                                                  DockPanel.Dock="Top">
-                                        <ItemsControl.ItemTemplate>
+                                                    </Border>
 
-                                            <DataTemplate DataType="{x:Type models:ILink}">
-                                                
-                                                <Button x:Name="Root"
-                                                        Height="40"
-                                                        Padding="20 0 12 0"
-                                                        HorizontalContentAlignment="Left"
-                                                        ToolTip="{Binding ToolTip}" 
-                                                        ToolTipService.InitialShowDelay="0" 
-                                                        Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MainWindow}}}"
-                                                        Style="{DynamicResource MaterialDesignFlatButton}"
-                                                        Command="{Binding DataContext.OpenLinkCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MainWindow}}}"
-                                                        CommandParameter="{Binding}">
+                                                    <DataTemplate.Triggers>
 
-                                                    <StackPanel Orientation="Horizontal"
-                                                                VerticalAlignment="Center">
+                                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="true">
+                                                            <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                                                        </DataTrigger>
 
-                                                        <materialDesign:PackIcon x:Name="PackIcon"
-                                                                                 Width="22"
-                                                                                 Height="22"
-                                                                                 Kind="{Binding IconKind}" />
-                                                        
-                                                        <TextBlock Margin="12 0 0 0"
-                                                                   VerticalAlignment="Center"
-                                                                   FontSize="14"
-                                                                   Style="{StaticResource MaterialDesignSubheadingTextBlock}"
-                                                                   Text="{Binding Title, Mode=OneWay}" />
-                                                        
-                                                    </StackPanel>
-                                                    
-                                                </Button>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding DataContext.User.UserType.Name, RelativeSource={RelativeSource AncestorType={x:Type views:MainWindow}}}" Value="Менеджер"/>
+                                                                <Condition Binding="{Binding Title}" Value="Пользователи"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </MultiDataTrigger>
 
-                                            </DataTemplate>
-                                            
-                                        </ItemsControl.ItemTemplate>
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <VirtualizingStackPanel Orientation="Vertical" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                    </ItemsControl>
+                                                    </DataTemplate.Triggers>
 
-                                </DockPanel>
+                                                </DataTemplate>
 
-                            </Border>
+                                            </ListBox.ItemTemplate>
+
+                                        </ListBox>
+
+                                        <Separator Grid.Row="1" 
+                                                   Style="{StaticResource MaterialDesignDarkSeparator}"/>
+
+                                        <ItemsControl Grid.Row="2"
+                                                      ItemsSource="{Binding Links}"
+                                                      VirtualizingStackPanel.IsVirtualizing="True"
+                                                      VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                                      ScrollViewer.CanContentScroll="True">
+                                            <ItemsControl.ItemTemplate>
+
+                                                <DataTemplate DataType="{x:Type models:ILink}">
+
+                                                    <Button x:Name="Root"
+                                                            Height="40"
+                                                            Padding="20 0 12 0"
+                                                            HorizontalContentAlignment="Left"
+                                                            ToolTip="{Binding ToolTip}" 
+                                                            ToolTipService.InitialShowDelay="0" 
+                                                            Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MainWindow}}}"
+                                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                                            Command="{Binding DataContext.OpenLinkCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MainWindow}}}"
+                                                            CommandParameter="{Binding}">
+
+                                                        <StackPanel Orientation="Horizontal"
+                                                                    VerticalAlignment="Center">
+
+                                                            <materialDesign:PackIcon x:Name="PackIcon"
+                                                                                     Width="22"
+                                                                                     Height="22"
+                                                                                     Kind="{Binding IconKind}" />
+
+                                                            <TextBlock Margin="12 0 0 0"
+                                                                       VerticalAlignment="Center"
+                                                                       FontSize="14"
+                                                                       Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                                                                       Text="{Binding Title, Mode=OneWay}" />
+
+                                                        </StackPanel>
+
+                                                    </Button>
+
+                                                </DataTemplate>
+
+                                            </ItemsControl.ItemTemplate>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+
+                                    </Grid>
+
+                                </ScrollViewer>
+
+                            </DockPanel>
                             
                         </materialDesign:DrawerHost.LeftDrawerContent>
 
@@ -295,6 +346,10 @@
                 <Setter TargetName="BtnMaxIcon" Property="Kind" Value="WindowRestore"/>
             </Trigger>
 
+            <Trigger Property="views:MainWindow.IsBusy" Value="false">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+            </Trigger>
+            
             <Trigger Property="views:MainWindow.IsBusy" Value="true">
 
                 <Trigger.EnterActions>
@@ -328,6 +383,7 @@
                 <Setter TargetName="BtnMin" Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
                 <Setter TargetName="BtnMax" Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
                 <Setter TargetName="BtnClose" Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                <Setter Property="Background" Value="White"/>
                 <Setter TargetName="mainWindowContent" Property="Content">
                     <Setter.Value>
 
@@ -349,7 +405,8 @@
                                     <materialDesign:TransitionEffect Kind="FadeIn" OffsetTime="{materialDesign:IndexedItemOffsetMultiplier 0:0:5}"/>
                                 </materialDesign:TransitioningContent.OpeningEffects>
 
-                                <views:AnimatedIcon/>
+                                <Image Source="/Farming.WpfClient;component/Resources/AuthorizationIcon.jpg"
+                                       Width="250"/>
 
                             </materialDesign:TransitioningContent>
 

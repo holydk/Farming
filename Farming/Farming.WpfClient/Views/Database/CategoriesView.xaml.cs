@@ -25,7 +25,13 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is CategoriesViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new CategoryDialog("Изменить", viewModel.SelectedModel);
+                var categoryVm = new CategoryViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Name = viewModel.SelectedModel.Name
+                };
+
+                return new CategoryDialog("Изменить", categoryVm);
             }
 
             return null;

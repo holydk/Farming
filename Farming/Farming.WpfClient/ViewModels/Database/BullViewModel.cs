@@ -43,7 +43,7 @@ namespace Farming.WpfClient.ViewModels.Database
         {
             IsValidOnClick = true;
 
-            AddRule(() => Location, () => !string.IsNullOrWhiteSpace(Location) && Location.Length < 50, "Поле не должно быть пустым и содержать больше 50 символов.");
+            //AddRule(() => Location, () => !string.IsNullOrWhiteSpace(Location) && Location.Length < 50, "Поле не должно быть пустым и содержать больше 50 символов.");
             AddRule(() => OtherId, () => !string.IsNullOrWhiteSpace(OtherId) && OtherId.Length < 50, "Поле не должно быть пустым и содержать больше 50 символов.");
 
             Childrens = new ObservableCollection<CowViewModel>();

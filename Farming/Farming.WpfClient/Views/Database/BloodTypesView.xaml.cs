@@ -24,7 +24,13 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is BloodTypesViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new BloodTypeDialog("Изменить", viewModel.SelectedModel);
+                var bTypeVm = new BloodTypeViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Name = viewModel.SelectedModel.Name
+                };
+
+                return new BloodTypeDialog("Изменить", bTypeVm);
             }
 
             return null;

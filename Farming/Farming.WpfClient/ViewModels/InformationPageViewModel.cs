@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Farming.WpfClient.Commands;
 using Farming.WpfClient.Models;
+using MaterialDesignThemes.Wpf;
 
 namespace Farming.WpfClient.ViewModels
 {
@@ -15,8 +16,8 @@ namespace Farming.WpfClient.ViewModels
 
         public ICommand OpenLinkCommand { get; }
 
-        public InformationPageViewModel(string title)
-            : base(title)
+        public InformationPageViewModel(string title, ISnackbarMessageQueue snackbarMessageQueue)
+            : base(title, snackbarMessageQueue)
         {
             OpenLinkCommand = new RelayCommand((sender) =>
             {

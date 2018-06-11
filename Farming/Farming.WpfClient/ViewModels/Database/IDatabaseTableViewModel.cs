@@ -9,5 +9,7 @@ namespace Farming.WpfClient.ViewModels.Database
         ICommand UpdateCommand { get; }
 
         ICommand DeleteCommand { get; }
+
+        void ClearData();
     }
 }

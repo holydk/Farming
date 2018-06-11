@@ -15,6 +15,8 @@ namespace Farming.WpfClient.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event EventHandler<NavigationEventArgs> Navigating;
+
         public event EventHandler<NavigationEventArgs> Navigated;
 
         public bool CanGoBack
@@ -82,6 +84,7 @@ namespace Farming.WpfClient.Models
         {
             if (contentResolvers.ContainsKey(type) && !IsCurrentContent(type))
             {
+                OnNavigating(new NavigationEventArgs(state, Content));
                 Content = contentResolvers[type]();
                 OnNavigated(new NavigationEventArgs(state, Content));
             }
@@ -136,6 +139,11 @@ namespace Farming.WpfClient.Models
         protected virtual void OnNavigated(NavigationEventArgs e)
         {
             Navigated?.Invoke(this, e);
+        }
+
+        protected virtual void OnNavigating(NavigationEventArgs e)
+        {
+            Navigating?.Invoke(this, e);
         }
     }
 }

@@ -24,7 +24,13 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is BreedsViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new BreedDialog("Изменить", viewModel.SelectedModel);
+                var breedVm = new BreedViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Name = viewModel.SelectedModel.Name
+                };
+
+                return new BreedDialog("Изменить", breedVm);
             }
 
             return null;

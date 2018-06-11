@@ -43,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -78,11 +81,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controls\DialogDatabaseTableView.cs" />
     <Compile Include="Controls\IndexedItemsControl.cs" />
     <Compile Include="Controls\PageView.cs" />
     <Compile Include="Controls\SearchTextBox.cs" />
+    <Compile Include="DatabaseService\FarmingConnectionService.cs" />
     <Compile Include="Helpers\CommonHelpers.cs" />
     <Compile Include="Helpers\EnumDescriptionConverter.cs" />
     <Compile Include="Helpers\MemberInfoToDescriptionConverter.cs" />
@@ -100,12 +106,14 @@
       <DependentUpon>FarmingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CommandItem.cs" />
+    <Compile Include="DatabaseService\ConnectionEventArgs.cs" />
     <Compile Include="Models\Cow.cs">
       <DependentUpon>FarmingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Family.cs">
       <DependentUpon>FarmingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FarmingEntities.cs" />
     <Compile Include="Models\FarmingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,6 +137,7 @@
     <Compile Include="Models\ICanSearch.cs" />
     <Compile Include="Models\ICanSort.cs" />
     <Compile Include="Models\ICommandItem.cs" />
+    <Compile Include="DatabaseService\IConnectionService.cs" />
     <Compile Include="Models\IConvertFromFile.cs" />
     <Compile Include="Models\IImageItem.cs" />
     <Compile Include="Models\IInformationItem.cs" />
@@ -143,7 +152,7 @@
       <DependentUpon>FarmingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Link.cs" />
-    <Compile Include="Models\logi.cs">
+    <Compile Include="Models\Log.cs">
       <DependentUpon>FarmingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MethodSluchki.cs">
@@ -170,6 +179,10 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>FarmingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserType.cs">
+      <DependentUpon>FarmingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\Database\BloodTypesViewModel.cs" />
     <Compile Include="ViewModels\Database\BloodTypeViewModel.cs" />
     <Compile Include="ViewModels\Database\BreedsViewModel.cs" />
@@ -178,6 +191,9 @@
     <Compile Include="ViewModels\Database\BullViewModel.cs" />
     <Compile Include="ViewModels\Database\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\Database\CategoryViewModel.cs" />
+    <Compile Include="Views\Database\CowsFilterView.xaml.cs">
+      <DependentUpon>CowsFilterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Database\CowsViewModel.cs" />
     <Compile Include="ViewModels\Database\CowViewModel.cs" />
     <Compile Include="ViewModels\Database\DatabaseTableViewModel.cs" />
@@ -187,6 +203,8 @@
     <Compile Include="ViewModels\Database\GenderViewModel.cs" />
     <Compile Include="ViewModels\Database\LinesViewModel.cs" />
     <Compile Include="ViewModels\Database\LineViewModel.cs" />
+    <Compile Include="ViewModels\Database\LogsViewModel.cs" />
+    <Compile Include="ViewModels\Database\LogViewModel.cs" />
     <Compile Include="ViewModels\Database\MethodSluchkiViewModel.cs" />
     <Compile Include="ViewModels\Database\MethodsSluchkiViewModel.cs" />
     <Compile Include="ViewModels\Database\PriplodsViewModel.cs" />
@@ -197,6 +215,10 @@
     <Compile Include="ViewModels\Database\ReproductionViewModel.cs" />
     <Compile Include="ViewModels\Database\RetirementsViewModel.cs" />
     <Compile Include="ViewModels\Database\RetirementViewModel.cs" />
+    <Compile Include="ViewModels\Database\UsersTypesViewModel.cs" />
+    <Compile Include="ViewModels\Database\UsersViewModel.cs" />
+    <Compile Include="ViewModels\Database\UserTypeViewModel.cs" />
+    <Compile Include="ViewModels\Database\UserViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Database\IDatabaseTableViewModel.cs" />
     <Compile Include="ViewModels\IInformationPageViewModel.cs" />
@@ -206,9 +228,13 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NavigationPageViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
+    <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\ValidationViewModelBase.cs" />
     <Compile Include="Views\AnimatedIcon.xaml.cs">
       <DependentUpon>AnimatedIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\AuthorizationView.xaml.cs">
+      <DependentUpon>AuthorizationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Database\BloodTypeDialog.xaml.cs">
       <DependentUpon>BloodTypeDialog.xaml</DependentUpon>
@@ -233,6 +259,18 @@
     </Compile>
     <Compile Include="Views\Database\CategoryDialog.xaml.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\CowDialog.xaml.cs">
+      <DependentUpon>CowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\CowsView.xaml.cs">
+      <DependentUpon>CowsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\DatabaseTableMiniSearchView.xaml.cs">
+      <DependentUpon>DatabaseTableMiniSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\DatabaseTableSearchView.xaml.cs">
+      <DependentUpon>DatabaseTableSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Database\DatabaseTableSortView.xaml.cs">
       <DependentUpon>DatabaseTableSortView.xaml</DependentUpon>
@@ -261,8 +299,41 @@
     <Compile Include="Views\Database\MethodsSluchkiView.xaml.cs">
       <DependentUpon>MethodsSluchkiView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Database\PriplodDialog.xaml.cs">
+      <DependentUpon>PriplodDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\PriplodsFilterView.xaml.cs">
+      <DependentUpon>PriplodsFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\PriplodsView.xaml.cs">
+      <DependentUpon>PriplodsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\ProductivitiesView.xaml.cs">
+      <DependentUpon>ProductivitiesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Database\ProductivityDialog.xaml.cs">
       <DependentUpon>ProductivityDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\ReproductionDialog.xaml.cs">
+      <DependentUpon>ReproductionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\ReproductionsFilterView.xaml.cs">
+      <DependentUpon>ReproductionsFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\ReproductionsView.xaml.cs">
+      <DependentUpon>ReproductionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\RetirementDialog.xaml.cs">
+      <DependentUpon>RetirementDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\RetirementsView.xaml.cs">
+      <DependentUpon>RetirementsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\UserDialog.xaml.cs">
+      <DependentUpon>UserDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Database\UsersView.xaml.cs">
+      <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -313,6 +384,10 @@
     <Resource Include="Resources\math_stats_icon_ico.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\AuthorizationViewTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\DialogDatabaseTableViewTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -333,9 +408,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Database\CowsFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AnimatedIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Database\AuthorizationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Database\BloodTypeDialog.xaml">
       <SubType>Designer</SubType>
@@ -366,6 +449,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Database\CategoryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\CowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\CowsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\DatabaseTableMiniSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\DatabaseTableSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -405,7 +504,51 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Database\PriplodDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\PriplodsFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\PriplodsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\ProductivitiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Database\ProductivityDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\ReproductionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\ReproductionsFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\ReproductionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\RetirementDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\RetirementsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\UserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Database\UsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -433,6 +576,8 @@
       <DependentUpon>FarmingModel.edmx</DependentUpon>
       <LastGenOutput>FarmingModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MenuHeaderBG.jpg" />
+    <Resource Include="Resources\AuthorizationIcon.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

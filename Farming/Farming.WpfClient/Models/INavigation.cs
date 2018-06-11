@@ -11,6 +11,7 @@ namespace Farming.WpfClient.Models
         bool CanGoForward { get; }
         UserControl Content { get; }
 
+        event EventHandler<NavigationEventArgs> Navigating;
         event EventHandler<NavigationEventArgs> Navigated;
 
         void Add<T>(Func<T> func) where T : UserControl;

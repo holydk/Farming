@@ -37,7 +37,13 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is FamiliesViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new FamilyDialog("Изменить", viewModel.SelectedModel);
+                var familyVm = new FamilyViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Name = viewModel.SelectedModel.Name
+                };
+
+                return new FamilyDialog("Изменить", familyVm);
             }
 
             return null;

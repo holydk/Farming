@@ -62,17 +62,31 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
 
-            <Button Content="Применить"
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    Margin="0 24 0 0"
-                    Command="{Binding ApplySortCommand}"/>
+            <Grid Margin="0 24 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <Button Content="Очистить"
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    Margin="0 8 0 0"
-                    Command="{Binding ClearSortCommand}"/>
+                <Button Grid.Column="0"
+                        Style="{StaticResource MaterialDesignToolButton}"
+                        HorizontalAlignment="Left"
+                        Command="{Binding ClearSortCommand}">
+
+                    <materialDesign:PackIcon Kind="Delete"/>
+
+                </Button>
+
+                <Button Grid.Column="1"
+                        Content="Применить"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        HorizontalAlignment="Right"
+                        Command="{Binding ApplySortCommand}"/>
+
+            </Grid>
 
         </StackPanel>
 
     </materialDesign:TransitioningContent>
+    
 </UserControl>

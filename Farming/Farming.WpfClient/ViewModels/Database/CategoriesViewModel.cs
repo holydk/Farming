@@ -1,4 +1,5 @@
 ﻿using Farming.WpfClient.Models;
+using MaterialDesignThemes.Wpf;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,79 +8,71 @@ namespace Farming.WpfClient.ViewModels.Database
 {
     public class CategoriesViewModel : DatabaseTableViewModel<CategoryViewModel>
     {
-        public CategoriesViewModel()
-            : base("Категории")
+        public CategoriesViewModel(ISnackbarMessageQueue snackbarMessageQueue, User user)
+            : base("Категории", user, snackbarMessageQueue)
         {
 
         }
 
-        public async override Task UpdateAsync()
+        protected async override Task UpdateAsync(FarmingEntities db)
         {
-            if (Models.Any())
-                Models.Clear();
+            var categories = await db.Categories.ToArrayAsync();
 
-            using (var db = new FarmingEntities())
+            foreach (var category in categories)
             {
-                var categories = await db.Categories.ToArrayAsync();
-
-                foreach (var category in categories)
+                Models.Add(new CategoryViewModel()
                 {
-                    Models.Add(new CategoryViewModel()
-                    {
-                        Id = category.Id,
-                        Name = category.Name
-                    });
-                }
+                    Id = category.Id,
+                    Name = category.Name
+                });
             }
         }
 
-        protected async override Task AddAsync(CategoryViewModel model)
+        protected async override Task AddAsync(FarmingEntities db, CategoryViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var newBType = new Category()
             {
-                var newBType = new Category()
-                {
-                    Name = model.Name
-                };
+                Name = model.Name
+            };
 
-                db.Categories.Add(newBType);
+            db.Categories.Add(newBType);
+
+            await db.SaveChangesAsync();
+
+            model.Id = newBType.Id;
+
+            Models.Add(model);
+        }
+
+        protected async override Task UpdateAsync(FarmingEntities db, CategoryViewModel model)
+        {
+            var category = await db.Categories.FindAsync(model.Id);
+
+            if (category != null)
+            {
+                category.Name = model.Name;
 
                 await db.SaveChangesAsync();
 
-                model.Id = newBType.Id;
+                var categoryVm = Models.FirstOrDefault(c => c.Id == category.Id);
 
-                Models.Add(model);
-            }
-        }
-
-        protected async override Task UpdateAsync(CategoryViewModel model)
-        {
-            using (var db = new FarmingEntities())
-            {
-                var category = await db.Categories.FindAsync(model.Id);
-
-                if (category != null)
+                if (categoryVm != null)
                 {
-                    category.Name = model.Name;
-
-                    await db.SaveChangesAsync();
+                    categoryVm.Name = model.Name;
                 }
             }
         }
 
-        protected async override Task DeleteAsync(CategoryViewModel model)
+        protected async override Task DeleteAsync(FarmingEntities db, CategoryViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var category = await db.Categories.FindAsync(model.Id);
+
+            if (category != null)
             {
-                var category = await db.Categories.FindAsync(model.Id);
+                db.Categories.Remove(category);
 
-                if (category != null)
-                {
-                    db.Categories.Remove(category);
-
-                    await db.SaveChangesAsync();
-                    Models.Remove(model);
-                }
+                await db.SaveChangesAsync();
+                Models.Remove(model);
             }
         }
     }

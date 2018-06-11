@@ -47,11 +47,11 @@ namespace Farming.WpfClient.ViewModels.Database
             set => Set(() => ChisloSuhihDney, value);
         }
 
-        [Description("Сор. период")]
-        public int? SorPeriod
+        [Description("Сер. период")]
+        public int? SerPeriod
         {
-            get => Get(() => SorPeriod);
-            set => Set(() => SorPeriod, value);
+            get => Get(() => SerPeriod);
+            set => Set(() => SerPeriod, value);
         }
 
         [Description("Дата отела")]
@@ -64,19 +64,37 @@ namespace Farming.WpfClient.ViewModels.Database
         public virtual BullViewModel Bull
         {
             get => Get(() => Bull);
-            set => Set(() => Bull, value);
+            set
+            {
+                Set(() => Bull, value);
+
+                if (Bull != null)
+                    BullId = Bull.Id;
+            }
         }
 
         public virtual CowViewModel Cow
         {
             get => Get(() => Cow);
-            set => Set(() => Cow, value);
+            set
+            {
+                Set(() => Cow, value);
+
+                if (Cow != null)
+                    CowId = Cow.Id;
+            }
         }
 
         public virtual MethodSluchkiViewModel MethodSluchki
         {
             get => Get(() => MethodSluchki);
-            set => Set(() => MethodSluchki, value);
+            set
+            {
+                Set(() => MethodSluchki, value);
+
+                if (MethodSluchki != null)
+                    MethodSluchkiId = MethodSluchki.Id;
+            }
         }
 
         public ReproductionViewModel()
@@ -85,7 +103,7 @@ namespace Farming.WpfClient.ViewModels.Database
 
             AddRule(() => DateOsemeneniya, () => DateOsemeneniya.HasValue, "Дата осеменения не может быть пустой.");
             AddRule(() => ChisloSuhihDney, () => ChisloSuhihDney.HasValue && ChisloSuhihDney > -1, "Поле не может быть пустым и отрицательным.");
-            AddRule(() => SorPeriod, () => SorPeriod.HasValue && SorPeriod > -1, "Поле не может быть пустым и отрицательным.");
+            AddRule(() => SerPeriod, () => SerPeriod.HasValue && SerPeriod > -1, "Поле не может быть пустым и отрицательным.");
             AddRule(() => DateOtela, () => DateOtela.HasValue, "Дата отела не может быть пустой.");
             AddRule(() => Bull, () => Bull != null && BullId == Bull.Id && Bull.Valid(), "Поле не должно быть пустым.");
             AddRule(() => Cow, () => Cow != null && CowId == Cow.Id && Cow.Valid(), "Поле не должно быть пустым.");

@@ -3,5 +3,7 @@
     public interface ICanSearch
     {
         void Search(object sender);
+
+        void ClearSearch();
     }
 }

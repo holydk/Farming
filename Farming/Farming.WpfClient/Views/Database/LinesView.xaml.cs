@@ -25,7 +25,13 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is LinesViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new LineDialog("Изменить", viewModel.SelectedModel);
+                var lineVm = new LineViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Name = viewModel.SelectedModel.Name
+                };
+
+                return new LineDialog("Изменить", lineVm);
             }
 
             return null;

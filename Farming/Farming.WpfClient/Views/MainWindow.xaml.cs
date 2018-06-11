@@ -19,7 +19,7 @@ namespace Farming.WpfClient.Views
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IView<INavigationViewModel>
+    public partial class MainWindow : Window, IView<MainViewModel>
     {
         public ICommand MinimizeCommand { get; }
         public ICommand MaximizeCommand { get; }
@@ -49,19 +49,21 @@ namespace Farming.WpfClient.Views
 
         private int _currentNavIndex;
 
-        public INavigationViewModel ViewModel
+        public MainViewModel ViewModel
         {
-            get => DataContext as INavigationViewModel;
+            get => DataContext as MainViewModel;
             set => DataContext = value;
         }
 
-        public MainWindow(INavigationViewModel viewModel)
+        public MainWindow(MainViewModel viewModel, SnackbarMessageQueue snackbarMessageQueue)
         {
-            ViewModel = viewModel;
+            ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 
             SetIsBusy(this, true);
 
             InitializeComponent();
+
+            MainSnackbar.MessageQueue = snackbarMessageQueue ?? throw new ArgumentNullException(nameof(snackbarMessageQueue));
 
             MinimizeCommand = new RelayCommand((sender) => WindowState = WindowState.Minimized);
             MaximizeCommand = new RelayCommand((sender) => WindowState ^= WindowState.Maximized);
@@ -152,6 +154,13 @@ namespace Farming.WpfClient.Views
                 };
 
                 SetIsBusy(this, false);
+
+                await Task.Delay(2500).ContinueWith(t =>
+                {
+                    //note you can use the message queue from any thread, but just for the demo here we 
+                    //need to get the message queue from the snackbar, so need to be on the dispatcher
+                    MainSnackbar.MessageQueue.Enqueue($"Приветствуем, {viewModel.User.LastName} {viewModel.User.FirstName} {viewModel.User.MiddleName}!");
+                }, TaskScheduler.FromCurrentSynchronizationContext());
             };
 
             Loaded += loaded;

@@ -24,7 +24,13 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is GendersViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new GenderDialog("Изменить", viewModel.SelectedModel);
+                var genderVm = new GenderViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Name = viewModel.SelectedModel.Name
+                };
+
+                return new GenderDialog("Изменить", genderVm);
             }
 
             return null;

@@ -86,7 +86,6 @@ namespace Farming.WpfClient.ViewModels
         {
             private readonly Func<bool> ruleDelegate;
             private readonly string message;
-            internal bool ValidationOnClick = true;
 
             internal Binder(Func<bool> ruleDelegate, string message)
             {

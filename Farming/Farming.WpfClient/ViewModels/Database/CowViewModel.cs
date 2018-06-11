@@ -115,43 +115,85 @@ namespace Farming.WpfClient.ViewModels.Database
         public virtual BullViewModel Father
         {
             get => Get(() => Father);
-            set => Set(() => Father, value);
+            set
+            {
+                Set(() => Father, value);
+
+                if (Father != null)
+                    FatherId = Father.Id;
+            }
         }
 
         public virtual BloodTypeViewModel BloodType
         {
             get => Get(() => BloodType);
-            set => Set(() => BloodType, value);
+            set
+            {
+                Set(() => BloodType, value);
+
+                if (BloodType != null)
+                    BloodTypeId = BloodType.Id;
+            }
         }
 
         public virtual CategoryViewModel Category
         {
             get => Get(() => Category);
-            set => Set(() => Category, value);
+            set
+            {
+                Set(() => Category, value);
+
+                if (Category != null)
+                    CategoryId = Category.Id;
+            }
         }
 
         public virtual CowViewModel Mother
         {
             get => Get(() => Mother);
-            set => Set(() => Mother, value);
+            set
+            {
+                Set(() => Mother, value);
+
+                if (Mother != null)
+                    MotherId = Mother.Id;
+            }
         }
 
         public virtual LineViewModel Line
         {
             get => Get(() => Line);
-            set => Set(() => Line, value);
+            set
+            {
+                Set(() => Line, value);
+
+                if (Line != null)
+                    LineId = Line.Id;
+            }
         }
 
         public virtual BreedViewModel Breed
         {
             get => Get(() => Breed);
-            set => Set(() => Breed, value);
+            set
+            {
+                Set(() => Breed, value);
+
+                if (Breed != null)
+                    BreedId = Breed.Id;
+            }
         }
 
         public virtual FamilyViewModel Family
         {
             get => Get(() => Family);
-            set => Set(() => Family, value);
+            set
+            {
+                Set(() => Family, value);
+
+                if (Family != null)
+                    FamilyId = Family.Id;
+            }
         }
 
         public virtual ICollection<CowViewModel> Childrens
@@ -192,13 +234,13 @@ namespace Farming.WpfClient.ViewModels.Database
             AddRule(() => Porodnost, () => Porodnost.HasValue && Porodnost > 0, "Поле должно быть больше 0.");
             AddRule(() => Weight, () => Weight.HasValue && Weight > 0, "Поле должно быть больше 0.");
             AddRule(() => Age, () => Age.HasValue && Age > 0, "Поле должно быть больше 0.");
-            AddRule(() => IsInHerd, () => IsInHerd.HasValue, "Поле не должно быть пустым.");
+            AddRule(() => IsInHerd, () => IsInHerd.HasValue, "Поле не должно быть неопределенным.");
             AddRule(() => BPlace, () => !string.IsNullOrWhiteSpace(BPlace) && BPlace.Length < 50, "Поле не должно быть пустым и содержать больше 50 символов.");
             AddRule(() => BDay, () => BDay.HasValue, "Поле не должно быть пустым.");
-            AddRule(() => Father, () => Father != null && FatherId == Father.Id && Father.Valid(), "Поле не должно быть пустым.");
+            //AddRule(() => Father, () => Father != null && FatherId == Father.Id && Father.Valid(), "Поле не должно быть пустым.");
             AddRule(() => BloodType, () => BloodType != null && BloodTypeId == BloodType.Id && BloodType.Valid(), "Поле не должно быть пустым.");
             AddRule(() => Category, () => Category != null && CategoryId == Category.Id && Category.Valid(), "Поле не должно быть пустым.");
-            AddRule(() => Mother, () => Mother != null && MotherId == Mother.Id && Mother.Valid(), "Поле не должно быть пустым.");
+            //AddRule(() => Mother, () => Mother != null && MotherId == Mother.Id && Mother.Valid() && Mother.Id != Id, "Поле не должно быть пустым и идентификатор матери не должен совпадать с текущей коровой.");
             AddRule(() => Line, () => Line != null && LineId == Line.Id && Line.Valid(), "Поле не должно быть пустым.");
             AddRule(() => Breed, () => Breed != null && BreedId == Breed.Id && Breed.Valid(), "Поле не должно быть пустым.");
             AddRule(() => Family, () => Family != null && FamilyId == Family.Id && Family.Valid(), "Поле не должно быть пустым.");

@@ -25,7 +25,13 @@ namespace Farming.WpfClient.Views.Database
         {
             if (ViewModel is MethodsSluchkiViewModel viewModel && viewModel.SelectedModel != null)
             {
-                return new MethodSluchkiDialog("Изменить", viewModel.SelectedModel);
+                var methodSluchkiVm = new MethodSluchkiViewModel()
+                {
+                    Id = viewModel.SelectedModel.Id,
+                    Name = viewModel.SelectedModel.Name
+                };
+
+                return new MethodSluchkiDialog("Изменить", methodSluchkiVm);
             }
 
             return null;

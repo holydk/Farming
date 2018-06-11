@@ -1,85 +1,78 @@
 ﻿using Farming.WpfClient.Models;
-using System.Linq;
+using MaterialDesignThemes.Wpf;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Farming.WpfClient.ViewModels.Database
 {
     public class BloodTypesViewModel : DatabaseTableViewModel<BloodTypeViewModel>
     {
-        public BloodTypesViewModel()
-            : base("Группы крови")
+        public BloodTypesViewModel(ISnackbarMessageQueue snackbarMessageQueue, User user)
+            : base("Группы крови", user, snackbarMessageQueue)
         {
 
         }
 
-        public async override Task UpdateAsync()
+        protected async override Task UpdateAsync(FarmingEntities db)
         {
-            if (Models.Any())
-                Models.Clear();
+            var bloodyTypes = await db.BloodTypes.ToArrayAsync();
 
-            using (var db = new FarmingEntities())
+            foreach (var bType in bloodyTypes)
             {
-                var bloodyTypes = await db.BloodTypes.ToArrayAsync();
-
-                foreach (var bType in bloodyTypes)
+                Models.Add(new BloodTypeViewModel()
                 {
-                    Models.Add(new BloodTypeViewModel()
-                    {
-                        Id = bType.Id,
-                        Name = bType.Name
-                    });
-                }
+                    Id = bType.Id,
+                    Name = bType.Name
+                });
             }
         }
 
-        protected async override Task AddAsync(BloodTypeViewModel model)
+        protected async override Task AddAsync(FarmingEntities db, BloodTypeViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var newBType = new BloodType()
             {
-                var newBType = new BloodType()
-                {
-                    Name = model.Name
-                };
+                Name = model.Name
+            };
 
-                db.BloodTypes.Add(newBType);
+            db.BloodTypes.Add(newBType);
+
+            await db.SaveChangesAsync();
+
+            model.Id = newBType.Id;
+
+            Models.Add(model);
+        }
+
+        protected async override Task UpdateAsync(FarmingEntities db, BloodTypeViewModel model)
+        {
+            var bType = await db.BloodTypes.FindAsync(model.Id);
+
+            if (bType != null)
+            {
+                bType.Name = model.Name;
 
                 await db.SaveChangesAsync();
 
-                model.Id = newBType.Id;
+                var bTypeVm = Models.FirstOrDefault(t => t.Id == bType.Id);
 
-                Models.Add(model);
-            }
-        }
-
-        protected async override Task UpdateAsync(BloodTypeViewModel model)
-        {
-            using (var db = new FarmingEntities())
-            {
-                var bType = await db.BloodTypes.FindAsync(model.Id);
-
-                if (bType != null)
+                if (bTypeVm != null)
                 {
-                    bType.Name = model.Name;
-
-                    await db.SaveChangesAsync();
+                    bTypeVm.Name = model.Name;
                 }
             }
         }
 
-        protected async override Task DeleteAsync(BloodTypeViewModel model)
+        protected async override Task DeleteAsync(FarmingEntities db, BloodTypeViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var bType = await db.BloodTypes.FindAsync(model.Id);
+
+            if (bType != null)
             {
-                var bType = await db.BloodTypes.FindAsync(model.Id);
+                db.BloodTypes.Remove(bType);
 
-                if (bType != null)
-                {
-                    db.BloodTypes.Remove(bType);
-
-                    await db.SaveChangesAsync();
-                    Models.Remove(model);
-                }
+                await db.SaveChangesAsync();
+                Models.Remove(model);
             }
         }
     }

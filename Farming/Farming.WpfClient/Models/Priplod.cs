@@ -20,6 +20,6 @@ namespace Farming.WpfClient.Models
         public Nullable<int> GenderId { get; set; }
     
         public virtual Gender Gender { get; set; }
-        public virtual Cow Cow { get; set; }
+        public virtual Cow Mother { get; set; }
     }
 }

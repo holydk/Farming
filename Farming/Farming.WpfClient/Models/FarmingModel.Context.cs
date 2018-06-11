@@ -29,7 +29,7 @@ namespace Farming.WpfClient.Models
         public virtual DbSet<BloodType> BloodTypes { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Line> Lines { get; set; }
-        public virtual DbSet<logi> logi { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Breed> Breeds { get; set; }
         public virtual DbSet<Priplod> Priplods { get; set; }
         public virtual DbSet<Productivity> Productivities { get; set; }
@@ -40,5 +40,6 @@ namespace Farming.WpfClient.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Cow> Cows { get; set; }
         public virtual DbSet<Reproduction> Reproductions { get; set; }
+        public virtual DbSet<UserType> UsersTypes { get; set; }
     }
 }

@@ -20,5 +20,9 @@ namespace Farming.WpfClient.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public decimal Phone { get; set; }
+        public int UserTypeId { get; set; }
+        public int Id { get; set; }
+    
+        public virtual UserType UserType { get; set; }
     }
 }

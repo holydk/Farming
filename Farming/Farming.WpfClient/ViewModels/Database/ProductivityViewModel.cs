@@ -48,7 +48,11 @@ namespace Farming.WpfClient.ViewModels.Database
         }
 
         [Description("Дата")]
-        public DateTime? Date { get; set; }
+        public DateTime? Date
+        {
+            get => Get(() => Date);
+            set => Set(() => Date, value);
+        }
 
         public virtual CowViewModel Cow
         {
@@ -56,7 +60,9 @@ namespace Farming.WpfClient.ViewModels.Database
             set
             {
                 Set(() => Cow, value);
-                CowId = Cow.Id;
+                
+                if (Cow != null)
+                    CowId = Cow.Id;
             }
         }
 

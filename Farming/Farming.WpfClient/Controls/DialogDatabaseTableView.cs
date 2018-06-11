@@ -43,21 +43,26 @@ namespace Farming.WpfClient.Controls
             DeleteCommand = new RelayCommand(
                 async sender => await RunDialogAsync(GetDeleteDialogView(), ViewModel.DeleteCommand));
 
-            ActionItems.Add(new ActionItem("Сортировка", PackIconKind.Sort, PackIconKind.SortVariant, new RelayCommand(sender =>
-            {
-                if (sender is ActionItem item)
-                {
-                    UpdateContent(item, new DatabaseTableSortView() { DataContext = ViewModel });
-                }
-            })));
+            ActionItems.Add(new CommandItem("Обновить", PackIconKind.Refresh, new RelayCommand(
+                async sender => await viewModel.UpdateAsync())));
 
-            ActionItems.Add(new ActionItem("Поиск", PackIconKind.Magnify, PackIconKind.Magnify, new RelayCommand(sender =>
-            {
-                if (sender is ActionItem item)
+            ActionItems.Add(new ActionItem("Сортировка", PackIconKind.Sort, PackIconKind.Tune, new RelayCommand(
+                sender =>
                 {
-                    UpdateContent(item, "SEARCH");
-                }
-            })));
+                    if (sender is ActionItem item)
+                    {
+                        UpdateContent(item, new DatabaseTableSortView() { DataContext = ViewModel });
+                    }
+                })));
+
+            ActionItems.Add(new ActionItem("Поиск", PackIconKind.Magnify, PackIconKind.Magnify, new RelayCommand(
+                sender =>
+                {
+                    if (sender is ActionItem item)
+                    {
+                        UpdateContent(item, new DatabaseTableSearchView() { DataContext = ViewModel });
+                    }
+                })));
 
             this.ExecuteOnLoaded(async () =>
             {

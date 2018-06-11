@@ -1,4 +1,5 @@
 ﻿using Farming.WpfClient.Models;
+using MaterialDesignThemes.Wpf;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,79 +8,71 @@ namespace Farming.WpfClient.ViewModels.Database
 {
     public class MethodsSluchkiViewModel : DatabaseTableViewModel<MethodSluchkiViewModel>
     {
-        public MethodsSluchkiViewModel()
-            : base("Методы случки")
+        public MethodsSluchkiViewModel(ISnackbarMessageQueue snackbarMessageQueue, User user)
+            : base("Методы случки", user, snackbarMessageQueue)
         {
 
         }
 
-        public async override Task UpdateAsync()
+        protected async override Task UpdateAsync(FarmingEntities db)
         {
-            if (Models.Any())
-                Models.Clear();
+            var methodsSluchki = await db.MethodsSluchki.ToArrayAsync();
 
-            using (var db = new FarmingEntities())
+            foreach (var methodSluchki in methodsSluchki)
             {
-                var methodsSluchki = await db.MethodsSluchki.ToArrayAsync();
-
-                foreach (var methodSluchki in methodsSluchki)
+                Models.Add(new MethodSluchkiViewModel()
                 {
-                    Models.Add(new MethodSluchkiViewModel()
-                    {
-                        Id = methodSluchki.Id,
-                        Name = methodSluchki.Name
-                    });
-                }
+                    Id = methodSluchki.Id,
+                    Name = methodSluchki.Name
+                });
             }
         }
 
-        protected async override Task AddAsync(MethodSluchkiViewModel model)
+        protected async override Task AddAsync(FarmingEntities db, MethodSluchkiViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var methodSluchki = new MethodSluchki()
             {
-                var methodSluchki = new MethodSluchki()
-                {
-                    Name = model.Name
-                };
+                Name = model.Name
+            };
 
-                db.MethodsSluchki.Add(methodSluchki);
+            db.MethodsSluchki.Add(methodSluchki);
+
+            await db.SaveChangesAsync();
+
+            model.Id = methodSluchki.Id;
+
+            Models.Add(model);
+        }
+
+        protected async override Task UpdateAsync(FarmingEntities db, MethodSluchkiViewModel model)
+        {
+            var methodSluchki = await db.MethodsSluchki.FindAsync(model.Id);
+
+            if (methodSluchki != null)
+            {
+                methodSluchki.Name = model.Name;
 
                 await db.SaveChangesAsync();
 
-                model.Id = methodSluchki.Id;
+                var methodSluchkiVm = Models.FirstOrDefault(m => m.Id == methodSluchki.Id);
 
-                Models.Add(model);
-            }
-        }
-
-        protected async override Task UpdateAsync(MethodSluchkiViewModel model)
-        {
-            using (var db = new FarmingEntities())
-            {
-                var methodSluchki = await db.MethodsSluchki.FindAsync(model.Id);
-
-                if (methodSluchki != null)
+                if (methodSluchkiVm != null)
                 {
-                    methodSluchki.Name = model.Name;
-
-                    await db.SaveChangesAsync();
+                    methodSluchkiVm.Name = model.Name;
                 }
             }
         }
 
-        protected async override Task DeleteAsync(MethodSluchkiViewModel model)
+        protected async override Task DeleteAsync(FarmingEntities db, MethodSluchkiViewModel model)
         {
-            using (var db = new FarmingEntities())
+            var methodSluchki = await db.MethodsSluchki.FindAsync(model.Id);
+
+            if (methodSluchki != null)
             {
-                var methodSluchki = await db.MethodsSluchki.FindAsync(model.Id);
+                db.MethodsSluchki.Remove(methodSluchki);
 
-                if (methodSluchki != null)
-                {
-                    db.MethodsSluchki.Remove(methodSluchki);
-
-                    await db.SaveChangesAsync();
-                    Models.Remove(model);
-                }
+                await db.SaveChangesAsync();
+                Models.Remove(model);
             }
         }
     }
