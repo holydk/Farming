@@ -15,15 +15,15 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/js7P5QDwhkzf4uKGGfFT-18cilc5tRMXRkUVf8iHoLEHia4LN65xrlRlOfVSyqKKJHx763lwQQ4fgSE_YDFG=w1600-h794">
+  <img src="https://lh4.googleusercontent.com/r8EM8uBsoSghuKgHHKdN2EUpw1fizPLEuvII8DE7AwMLyxF40d8qzaO4Vh8vsQIujmXYhXKkoHJAHIIUqP6y=w1600-h755">
 </p>
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/9zHAM5oOqv12IKnSedbZLGAG2YqPkoJVCc0sr0BRQJM50-ME6gNPLkjKxNapvfw3Sx-LjAvTBWuUPGH5h_zm=w1600-h794">
+  <img src="https://lh6.googleusercontent.com/OtCQV6AkYs7DZnWyk1xjiD-ZR-QrkFLYrepJmtnPOGkACnqdMGriiCS6DyxeowIroTrTSNggTFcJ5uVo8HDF=w1600-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh5.googleusercontent.com/iaASYmWebA_8xtotP9XSZKuzossy1Q3lRVRnX2UTTz10OYSa0Mx6kIt21j3Z1TOpSRzys0Q5beUXXChli-4q=w1600-h794">
+  <img src="https://lh5.googleusercontent.com/Hi-4DSAFzzEL9Tvqi3xwEoLVFxfr6J0VUjX_vKBYJSL4JqcnHKGjNaqzQW9QJQvGMh4HY4La8Hc-DqQVdmRN=w1600-h794">
 </p>
 
 <p align="center">
@@ -31,7 +31,7 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/0jGW3mqePJpZpk_EPm-e6BgurcgUk1xwS64h6Zw4ARLl3GcxDIeDaMPnBKrrvVkuf82P0Bw-_kNOhGCORNjV=w1600-h794-rw">
+  <img src="https://lh6.googleusercontent.com/gNvDuVcpqrELn2Dxrkr_yPAlsg_aDCED5oHQZvgxfVnHXhPRwZRjfFKzo5rCRt5uywUIDFNikPPcan7wcC5Y=w1600-h794-rw">
 </p>
 
 <p align="center">
@@ -39,11 +39,11 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh5.googleusercontent.com/JzBNhmntXJJ6FGhxjdQSK5IO_BR2ZsRCbl9pD0dNuIyQD1nHCSvnjJTk2mt_CJqXg8kBc0U_8tiOPqaRpgc2=w1600-h794-rw">
+  <img src="https://lh4.googleusercontent.com/2pbPF4BRWWgszjB1-QYezPyNBGtU3FQu9x63FNhZATcYsdTP5Lg4otJIHe8lK2FOborlr5TfM3shpmg8u75f=w1199-h794-rw">
 </p>
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/88p3RnnjzOyXf7RSc5-wt9viWCfOXeIwJo5akIo8P7FXRFWtPGxRWC366HH53BCiI8niiKKjiTqddFnzj9sL=w1600-h794">
+  <img src="https://lh4.googleusercontent.com/N0CaKukYPjjpSeYpFwvi24cKf2d5WTRa4K1AWoscnFvImLQIcBURsfcVKchXmMwFnhirisOqx8PNweCuLNGJ=w1199-h794">
 </p>
 
 <p align="center">
@@ -51,51 +51,47 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/MNkKnIM_sHeFiEe1aCKf4Zt9HaNkpIJtyCASUVZ1zc6mbW6tFs01qFAi50mVks8qi9FXo1o6X75tWmFrfYAY=w1600-h794">
+  <img src="https://lh3.googleusercontent.com/bM2WKNCkDL20HOC8TpV2rwV0fQFMcGXHWweQdJwcTbtRCOQmKf5YFBArW1f-xmWvFf57tEyWe5LKNniHYfAt=w1199-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/HmGOemJi_x6xu8x_g7Vh7CUZWDFmHtMCwkaT88vyHIYx_vfLiudJvzH3lLX1o-5YtxbaRdic63rTvIWhHPYa=w1600-h794">
+  <img src="https://lh6.googleusercontent.com/Hjedgo8S0pFf3v_CEfBrX7J1D-z4UaxI1VNEHahGwYJtLHEM6rOZ7rmuywWg82wXZmAY99sdbB563_k_2kd7=w1199-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/t-ZJ8jRXoKMQuL36EXjk8_ZPxXLpKffMUTRvnkrAVjHLvUr3t6dSVkxLKQJh7sXuluIN19dvJUErxN-PHmEK=w1600-h794">
+  <img src="https://lh4.googleusercontent.com/gcZHiPqTJZtHcNpz33wEYEY9POOeUwx2ZYGbSI51W4K7YnuEVXrHi9n_vuDxIW8LXz2cY75UFQYky8BQpOzl=w1600-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh4.googleusercontent.com/YQi4g03e7kvE_5ZD86fVbxcLyds-pF6c1sEdU58SMYYCKZuvgAfd8uCr4qBKGAX8k737l2nJRYI8wl3WElZE=w1600-h794">
+  <img src="https://lh3.googleusercontent.com/CyjgX7R0nYVf1haDa8-aRiX44T_13i2T28kh_tbOYIqWJnoWPD4qQng8yMKNtPAcFNRLlXsL3Xj1ToR_WwKi=w1199-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/W_HVo4_Er2unjGP-fVo72iY0mnrVGCOk2wkEPpYE63qu0tOVDOdrHB-kRNlU4kVSIffHkz5Ek4DiqLA0NhTK=w1600-h794">
+  <img src="https://lh4.googleusercontent.com/3YoB-ltH7zSwHah65PKLBVgmLjIKUrFs35ZKx1rav-P7JkoEXKF-FsAfIPXDysLTk_CXpM_OjW3VEYayMFx_=w1600-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh5.googleusercontent.com/R00WTAAiCcnYkS_NRl-G-JZ3Ol_oRWM9pBzydbYMuFTG9tseXctJG8Zpir4p5U6JMGIbXc-jnrH_5fbFLXiG=w1600-h794">
+  <img src="https://lh3.googleusercontent.com/sRe9YQYi1BHqFHe2I3q1IBsLFAcZTwIjzyLbaeuzl6ODPvj2-O_nALnWmmUIEudcanzLXeN3uQfl5wpSfkzU=w1199-h794-rw">
 </p>
 
 <p align="center">
-  <img src="https://lh5.googleusercontent.com/dxWcWQQN2FfOjCOa4FJLii53Ji7oBrrVDRQ48ni7u2_jWAdBmMwvQS3nruZCeDmCT2ZJrWYlrQYzCX6KGvxy=w1600-h794-rw">
+  <img src="https://lh6.googleusercontent.com/4Oe-LpKplsRw5RRpbymK56OwagQKhXb5I_xVoHEw9-n9YCQX5Of0NtMuaUAzuOSOgJbTsVv5N2OU1Yz4XMAW=w1199-h794-rw">
 </p>
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/sZdPtT0fEHKROrTfwExqDy8_RQHn3H62nfQVRB87PU8NosHjSpDPGYYdTUJDEL-Vp6xNEt-JvPfIV57ca4-o=w1600-h794-rw">
-</p>
-
-<p align="center">
-  <img src="https://lh4.googleusercontent.com/H28zIzJ8PAif1AWypBHJzE-dXVNkDysnhe_mvW7KVPyjzG6kNiUDq735FzgY-uHpJsK-0b2Iho8WNcNEmqiz=w1600-h794-rw">
+  <img src="https://lh3.googleusercontent.com/mVEMIHTyDkRge__BaLAtUuy29aX43aqZWXnrfRb-OUF-EueDEoltojyZl9wUBhTPm8x5txO9heqnBPDoTsum=w1199-h794-rw">
 </p>
 
 > The Manager can not delete data
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/bQ5IESOcgkAOciKhEnv1VUbdpJb20v65VZxTVgT1HHKijFWls8YGZTRZiUKBvKuyoDitZDBw5GXUG8r7skm4=w1600-h794-rw">
+  <img src="https://lh6.googleusercontent.com/NMZ_WIRjN1K7pob0t9duG4psHyhPNL2D4Kp2We_ioiFKqGNGOcBf7e52JacRlZ8tlj60RGYZ47XebBDPcL6h=w1199-h794-rw">
 </p>
 
 > Sorting
 
 <p align="center">
-  <img src="https://lh5.googleusercontent.com/d5dj-SHblsljWxYrffCd4ZQLyLKJQB9Mh32DMQxhDW8rFOCEoaDufcIpPXZhmaleUpcqu-yk6bRTNSarfiqk=w1600-h794">
+  <img src="https://lh6.googleusercontent.com/OepJH9VEXt_bYvIfAi99ZHfiLTLJOZWtYLLA2XjZpFpYQ0gzJ-Y5LYpYjzGxoV6U72BD9wxVf7CkzRrYI0LQ=w1199-h794">
 </p>
 
 > Filtration
