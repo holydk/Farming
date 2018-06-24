@@ -31,7 +31,7 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/gNvDuVcpqrELn2Dxrkr_yPAlsg_aDCED5oHQZvgxfVnHXhPRwZRjfFKzo5rCRt5uywUIDFNikPPcan7wcC5Y=w1600-h794-rw">
+  <img src="https://lh5.googleusercontent.com/BEdg4nFJLnGpEoLPEM-b86xlQ4eWFFcFM7XmoHfe2_zzwzak_FkzdttLFu8gfppPatqUCgq_hSQneIS3XqOK=w1199-h794-rw">
 </p>
 
 <p align="center">
@@ -39,7 +39,7 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh4.googleusercontent.com/2pbPF4BRWWgszjB1-QYezPyNBGtU3FQu9x63FNhZATcYsdTP5Lg4otJIHe8lK2FOborlr5TfM3shpmg8u75f=w1199-h794-rw">
+  <img src="https://lh5.googleusercontent.com/n79-KUGQEhwIpJB1ABYjX6JYF7tRR8uBPyXvE5fR6S-ElxqmOZA9k8N2XXfMOJ-xFCA9SiudoTEe4wFmJx9I=w1199-h794-rw">
 </p>
 
 <p align="center">
