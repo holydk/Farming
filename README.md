@@ -26,17 +26,13 @@ This project is the implementation of an automated information system for farmin
   <img src="https://lh3.googleusercontent.com/k-w1lAAoM8iCrDZogrb9FSebH6HnxizRmEZNLd6TJYoUUtGCt1utlIR13kKrw78Dr_bTSk9a5Zmj8dEfjWhO=w1199-h794">
 </p>
 
-<p align="center">
-  The Entities for Manager role.
-</p>
+> The Entities for Manager role.
 
 <p align="center">
   <img src="https://lh5.googleusercontent.com/BEdg4nFJLnGpEoLPEM-b86xlQ4eWFFcFM7XmoHfe2_zzwzak_FkzdttLFu8gfppPatqUCgq_hSQneIS3XqOK=w1199-h794-rw">
 </p>
 
-<p align="center">
-  The Entities for Admin role.
-</p>
+> The Entities for Admin role.
 
 <p align="center">
   <img src="https://lh5.googleusercontent.com/n79-KUGQEhwIpJB1ABYjX6JYF7tRR8uBPyXvE5fR6S-ElxqmOZA9k8N2XXfMOJ-xFCA9SiudoTEe4wFmJx9I=w1199-h794-rw">
@@ -55,11 +51,11 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/Hjedgo8S0pFf3v_CEfBrX7J1D-z4UaxI1VNEHahGwYJtLHEM6rOZ7rmuywWg82wXZmAY99sdbB563_k_2kd7=w1199-h794">
+  <img src="https://lh6.googleusercontent.com/7-KJNNVxQN6EwVoQ9kOK1aBN6GLGivxs1GUj3gLKmvqk8a0Ok6_s2D7GV8e8DLKQNYpSck-5wPeo_S6gmemY=w1199-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh4.googleusercontent.com/gcZHiPqTJZtHcNpz33wEYEY9POOeUwx2ZYGbSI51W4K7YnuEVXrHi9n_vuDxIW8LXz2cY75UFQYky8BQpOzl=w1600-h794">
+  <img src="https://lh6.googleusercontent.com/GO4GbSnnI6osoDfMcNGkGnI0K4tD4k68X0actKAQWTjBcD_84-aeQTefHHDFEeti7ydglUq7IZomn8kxJhjX=w1199-h794">
 </p>
 
 <p align="center">
