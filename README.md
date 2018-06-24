@@ -19,11 +19,11 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/OtCQV6AkYs7DZnWyk1xjiD-ZR-QrkFLYrepJmtnPOGkACnqdMGriiCS6DyxeowIroTrTSNggTFcJ5uVo8HDF=w1600-h794">
+  <img src="https://lh3.googleusercontent.com/7bRlaKphjWHFg0RL4htXtS6TLD6lci_zGzZlDw180Y6cEebxbzjwH_BZ9s-PwcUKIXnJxNVQsUmKeijfcjTs=w1199-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh5.googleusercontent.com/Hi-4DSAFzzEL9Tvqi3xwEoLVFxfr6J0VUjX_vKBYJSL4JqcnHKGjNaqzQW9QJQvGMh4HY4La8Hc-DqQVdmRN=w1600-h794">
+  <img src="https://lh3.googleusercontent.com/k-w1lAAoM8iCrDZogrb9FSebH6HnxizRmEZNLd6TJYoUUtGCt1utlIR13kKrw78Dr_bTSk9a5Zmj8dEfjWhO=w1199-h794">
 </p>
 
 <p align="center">
