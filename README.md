@@ -59,11 +59,15 @@ This project is the implementation of an automated information system for farmin
 </p>
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/CyjgX7R0nYVf1haDa8-aRiX44T_13i2T28kh_tbOYIqWJnoWPD4qQng8yMKNtPAcFNRLlXsL3Xj1ToR_WwKi=w1199-h794">
+  <img src="https://lh5.googleusercontent.com/KZMLkm830wii5jxd0v1Nisx5Mzqz1Eurb4lOlh95QZ6RNW_US2QKpSpLlfbPak8CKTXvS3gAS02O466UtIIL=w1199-h794">
 </p>
 
 <p align="center">
-  <img src="https://lh4.googleusercontent.com/3YoB-ltH7zSwHah65PKLBVgmLjIKUrFs35ZKx1rav-P7JkoEXKF-FsAfIPXDysLTk_CXpM_OjW3VEYayMFx_=w1600-h794">
+  <img src="https://lh5.googleusercontent.com/a73nBIBnVw5ka-OIfr7RBFUxtKeQU-dMe-V4hTHVE6bem_xLb_qS2x51OMdJM8sMl2kpDxy9WFKBtBr_Uxyb=w1199-h794">
+</p>
+
+<p align="center">
+  <img src="https://lh6.googleusercontent.com/GeFCy8pZA6wY3Pk5sVFAQxWxGmWsYplMjbGmAUPYhN19PgYaFvwfWD4xECJGJN3kjmTL9ySajVNtuqc6yjUz=w1199-h794">
 </p>
 
 <p align="center">
